@@ -1,0 +1,1 @@
+use this docs folder to hold your documents relating to the project, like any diagrams you create

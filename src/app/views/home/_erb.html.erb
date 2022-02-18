@@ -1,0 +1,47 @@
+<h2>ERB basics</h2>
+<p>
+  <%# You'll notice the tags are in tags. It's because otherwise %>
+  <%# they will be parsed as code and I want plain text here. %>
+  To run ruby code, put it in a tag formatted like this:
+  <br>
+  <mark><%% app_name() %></mark> -> <% app_name() %>
+  <br>
+  However, that won't change the HTML sent to the client. In fact, even if
+  we tried to write something that would be part of the document like this
+  <br>
+  <mark><%% 'Hello, world!' %></mark> -> <% 'Hello, world!' %>
+  <br>
+  Nothing happens still? This is because while rails inputs the return value of 
+  a block of code like this into the document, it only does so if we tell
+  the language to do so. We do that like this. Add an = to the front of
+  the block.
+  <br>
+  <mark><%%= 'Hello, world!' %></mark> -> <%= 'Hello, world!' %>
+  <br>
+  And success! However, in doing so, we found something important.
+  If you want to run some code like an if around HTML depending on if the 
+  user is logged in or not, use <mark><%% if %> ... <%% else %> ... <%% end %></mark>.
+  None of these tags will output anything since there's no =, so you
+  can do things like this. However, if you do want to output something,
+  make sure to use the equal sign at the front, or you'll be confused as
+  to why nothing is printing!
+  <br>
+  Oh, and comments are like this. <mark><%%# Hiya! %></mark>. They will not be
+  written to the HTML file sent to the user.
+</p>
+<h2>Writing good html.erb files</h2>
+<p>
+  Here's the golden rule of erb: don't process data in the erb file!
+  There's nothing to stop you from processing information within the view
+  itself, but this is very bad practice for several reasons.
+</p>
+<p>
+  The main reason is simple. MVC. Model, View, Controller. A view should
+  NOT be fetching its own information or manipulating models. That's the 
+  controller's job. Keeping these tasks seperate will make your view
+  files highly readable. Speaking from experience, Software Engineering
+  projects can become complex due to (unavoidable, you're learning!)
+  inexperience with web development and the MVC model. Doing your best to
+  follow those guidelines will help you substancially in the last few
+  assignments of the classs.
+</p>
