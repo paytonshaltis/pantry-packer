@@ -1,3 +1,43 @@
 // Place all the styles related to the requests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+div.table-container {
+  width: 100%;
+  border-radius: 10px;
+}
+
+
+tr.header {
+  background-color: black;
+  color: white;
+}
+
+tr.data {
+  transition-property: transform;
+  transition-duration: 0.25s;
+  font-size: 1.15em;
+}
+
+tr.data:hover {
+  transform: scale(1.0125);
+}
+
+div.center {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.container h2 {
+  font-size: 1.2em;
+}
+
+div.right-align {
+  text-align: right;
+}
+
+.flexy {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

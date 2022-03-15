@@ -1,10 +1,11 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: %i[ show edit update destroy ]
-  skip_before_action :authenticate_user!
 
   # GET /requests or /requests.json
   def index
     @requests = Request.all
+
+    
   end
 
   # GET /requests/1 or /requests/1.json
@@ -66,6 +67,18 @@ class RequestsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def request_params
-      params.require(:request).permit(:name, :item_type, :description, :ispositive)
+
+      # Updated to permit the user_id parameter for user --> request association.
+      params.require(:request).permit(:name, :item_type, :description, :ispositive, :user_id)
     end
+
+    # Create an abbreviated description for the request.
+    def self.abbreviate_desc(description)
+      result = description.to_s[0..40]
+      if description.to_s[41]
+        result = result + "..."
+      end
+      return result
+    end  
+
 end

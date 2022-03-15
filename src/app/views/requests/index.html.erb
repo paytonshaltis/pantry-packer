@@ -1,33 +1,62 @@
-<p id="notice"><%= notice %></p>
+<h1>
+  <%= current_user.pantry_name %>
+  <small class="text-muted"> - Manage Requests</small>
+</h1>
 
-<h1>Requests</h1>
+<hr>
 
-<table>
+<h2>Manage Existing Requests</h2>
+<p>All of your pantry's current requests can be found here. See the full request by clicking the associated 'Show' button in order to view more information or edit the request. Close a request by clicking the associated 'Close' button.</p>
+
+<div class="flexy">
+  <div>
+    <h2>Create New Requests</h2>
+    <p class="left">Need to make a brand new request? Click on the 'New Request' button to enter the information associated with your new request.</p>
+  </div>
+  <%= link_to 'New Request', new_request_path, class:"btn btn-primary btn-lg right"%>
+</div>
+
+
+<hr>
+
+<table class="table table-hover table-borderless">
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Item type</th>
-      <th>Description</th>
-      <th>Ispositive</th>
-      <th colspan="3"></th>
+    <tr class="header">
+      <th>Requested Item</th>
+      <th>Item Type</th>
+      <th colspan="3">Request Description</th>
     </tr>
   </thead>
 
   <tbody>
     <% @requests.each do |request| %>
-      <tr>
-        <td><%= request.name %></td>
-        <td><%= request.item_type %></td>
-        <td><%= request.description %></td>
-        <td><%= request.ispositive %></td>
-        <td><%= link_to 'Show', request %></td>
-        <td><%= link_to 'Edit', edit_request_path(request) %></td>
-        <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+
+      <%# Only show the request if it belongs to the user. %>
+      <% if request.user_id == current_user.id %>
+        
+        <%# Row color changes based on request type. %>
+        <% if request.ispositive %>
+          <tr class="table-success data">
+        <% else %>
+          <tr class="table-danger data">
+        <% end %>
+          <td class="name"><strong><%= request.name %></strong></td>
+          <td><%= request.item_type %></td>
+          
+          <%# Only show a preview of the request description. %>
+          <td><em><%= RequestsController.abbreviate_desc(request.description) %></em></td>
+
+          <%# Give the pantry representative the option to manipulate requests. %>
+          <td><div class="center"><%= link_to 'Show', request, class:"btn btn-sm btn-secondary"%></div></td>
+          <td><div class="center"><%= link_to 'Close', request, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %></div></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Request', new_request_path %>
+<!--
+  <td><%= link_to 'Edit', edit_request_path(request), class:"btn btn-sm btn-primary" %></td>
+-->
