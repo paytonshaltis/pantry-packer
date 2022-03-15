@@ -44,6 +44,6 @@ class RequestsTest < ApplicationSystemTestCase
       click_on "Destroy", match: :first
     end
 
-    assert_text "Request was successfully destroyed"
+    assert_text "Request was successfully closed."
   end
 end

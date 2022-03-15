@@ -4,8 +4,6 @@ class RequestsController < ApplicationController
   # GET /requests or /requests.json
   def index
     @requests = Request.all
-
-    
   end
 
   # GET /requests/1 or /requests/1.json
@@ -54,7 +52,7 @@ class RequestsController < ApplicationController
     @request.destroy
 
     respond_to do |format|
-      format.html { redirect_to requests_url, notice: "Request was successfully destroyed." }
+      format.html { redirect_to requests_url, notice: "Request was successfully closed." }
       format.json { head :no_content }
     end
   end
@@ -80,5 +78,17 @@ class RequestsController < ApplicationController
       end
       return result
     end  
+
+    # Returns the number of requests for the user_id.
+    def self.get_total_requests(user_id)
+      count = 0
+      requests = Request.all
+      requests.each { |request| 
+        if request.user_id == user_id
+          count += 1
+        end
+      }
+      return count
+    end
 
 end

@@ -16,44 +16,49 @@
   <%= link_to 'New Request', new_request_path, class:"btn btn-primary btn-lg right"%>
 </div>
 
-
 <hr>
 
-<table class="table table-hover table-borderless">
-  <thead>
-    <tr class="header">
-      <th>Requested Item</th>
-      <th>Item Type</th>
-      <th colspan="3">Request Description</th>
-    </tr>
-  </thead>
+<% if RequestsController.get_total_requests(current_user.id) == 0%>
+  <div class="center">
+    <h3>You don't have any requests yet.</h3>
+  </div>
+<% else %>
+  <table class="table table-hover table-borderless">
+    <thead>
+      <tr class="header">
+        <th>Requested Item</th>
+        <th>Item Type</th>
+        <th colspan="3">Request Description</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% @requests.each do |request| %>
+    <tbody>
+      <% @requests.each do |request| %>
 
-      <%# Only show the request if it belongs to the user. %>
-      <% if request.user_id == current_user.id %>
-        
-        <%# Row color changes based on request type. %>
-        <% if request.ispositive %>
-          <tr class="table-success data">
-        <% else %>
-          <tr class="table-danger data">
-        <% end %>
-          <td class="name"><strong><%= request.name %></strong></td>
-          <td><%= request.item_type %></td>
+        <%# Only show the request if it belongs to the user. %>
+        <% if request.user_id == current_user.id %>
           
-          <%# Only show a preview of the request description. %>
-          <td><em><%= RequestsController.abbreviate_desc(request.description) %></em></td>
+          <%# Row color changes based on request type. %>
+          <% if request.ispositive %>
+            <tr class="table-success data">
+          <% else %>
+            <tr class="table-danger data">
+          <% end %>
+            <td class="name"><strong><%= request.name %></strong></td>
+            <td><%= request.item_type %></td>
+            
+            <%# Only show a preview of the request description. %>
+            <td><em><%= RequestsController.abbreviate_desc(request.description) %></em></td>
 
-          <%# Give the pantry representative the option to manipulate requests. %>
-          <td><div class="center"><%= link_to 'Show', request, class:"btn btn-sm btn-secondary"%></div></td>
-          <td><div class="center"><%= link_to 'Close', request, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %></div></td>
-        </tr>
+            <%# Give the pantry representative the option to manipulate requests. %>
+            <td><div class="center"><%= link_to 'Show', request, class:"btn btn-sm btn-secondary"%></div></td>
+            <td><div class="center"><%= link_to 'Close', request, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %></div></td>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+<% end %>
 
 <br>
 
