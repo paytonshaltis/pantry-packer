@@ -19,8 +19,6 @@ if Rails.env.development?
   # Create two user profiles, admin and unprivledged user
   # Right now, there is no difference between the accounts
   # If your project needs it, add a boolean field to user for administrator
-  admin = User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
-  user = User.create!(email: 'user@example.com', password: 'password', password_confirmation: 'password')
 
 elsif Rails.env.production?
 

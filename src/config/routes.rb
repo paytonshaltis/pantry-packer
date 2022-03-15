@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   get 'home/view_requests'
 
   # Devise login and account views.
-  devise_for :users
+  devise_for :users, :controllers => {registrations: 'users/registrations'}
 
 end
