@@ -9,8 +9,13 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
+  # The root, true homepage of the application.
   root 'home#index'
+
+  # The page for viewing all requests from all pantries.
   get 'home/view_requests'
+
+  # Devise login and account views.
   devise_for :users
 
 end

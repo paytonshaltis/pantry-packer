@@ -11,7 +11,7 @@
 # Create the global configuration
 # create! makes the object and automatically saves it to the database
 # the ! means that if something goes wrong and cannot save, throw an exception
-AppConfig.create!(name: 'MyApp', logo_url: 'hhhhhhh')
+AppConfig.create!(name: 'Pantry Packer', logo_url: 'hhhhhhh')
 
 if Rails.env.development?
 
