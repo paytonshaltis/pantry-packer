@@ -17,5 +17,6 @@ class HomeController < ApplicationController
   # Also, any local variable made inside this method will also exist
   # in the view to be displayed. Do not look up information within the
   # view itself. Do it here, please!
-  def index; end
+  def index
+  end
 end
