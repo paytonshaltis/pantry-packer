@@ -21,9 +21,11 @@
     </li>
 
     <%# Link to manage pantry requests. %>
-    <li class="nav-item">
-      <%= link_to 'Manage Pantry', home_view_requests_path, class:"nav-link" %>
-    </li>
+    <% if user_signed_in? %>
+      <li class="nav-item">
+        <%= link_to 'Manage Pantry', home_view_requests_path, class:"nav-link" %>
+      </li>
+    <% end %>
 
 
 
@@ -32,16 +34,8 @@
 
     <%# If user signed in, show account, else sign in %>
     <% if user_signed_in? %>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-    aria-expanded="false">
-      Account
-      </a>
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-      <%= link_to 'Edit Account', edit_user_registration_path, class:"dropdown-item" %>
-      <div class="dropdown-divider"></div>
-      <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
-      </div>
+    <li class="nav-item">
+      <%= link_to "Account", edit_user_registration_path, class: "btn btn-outline-primary" %>
     </li>
     <% else %>
     <li class="nav-item">
