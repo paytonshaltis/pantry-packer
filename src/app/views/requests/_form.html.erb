@@ -14,28 +14,28 @@
 
     <div class="field">
       <%= form.label "Request Name: ", class: "form-label" %><br>
-      <%= form.text_field :name, class:"fill-field form-control" %>
+      <%= form.text_field :name, class:"fill-field form-control", required: true %>
       <small class="form-text text-muted">This is the first thing that viewers will see when they find your request.</small>
     </div>
     <hr>
     <div class="field">
       <%= form.label "Request Item Type:", class: "form-label" %><br />
       <%= form.label :item_type, "Canned Good", :value => "Canned Good" %>
-      <%= form.radio_button :item_type, "Canned Good", class: "radio-b" %>
+      <%= form.radio_button :item_type, "Canned Good", class: "radio-b", required: true %>
       <%= form.label :item_type, "Fruit", :value => "Fruit"%>
-      <%= form.radio_button :item_type, "Fruit", class: "radio-b" %>
+      <%= form.radio_button :item_type, "Fruit", class: "radio-b", required: true %>
       <%= form.label :item_type, "Vegetable", :value => "Vegetable" %>
-      <%= form.radio_button :item_type, "Vegetable", class: "radio-b" %>
+      <%= form.radio_button :item_type, "Vegetable", class: "radio-b", required: true %>
       <%= form.label :item_type, "Grain", :value => "Grain" %>
-      <%= form.radio_button :item_type, "Grain", class: "radio-b" %><br>
+      <%= form.radio_button :item_type, "Grain", class: "radio-b", required: true %><br>
       <%= form.label :item_type, "Protein", :value => "Protein" %>
-      <%= form.radio_button :item_type, "Protein", class: "radio-b" %>
+      <%= form.radio_button :item_type, "Protein", class: "radio-b", required: true %>
       <%= form.label :item_type, "Dairy", :value => "Dairy" %>
-      <%= form.radio_button :item_type, "Dairy", class: "radio-b" %>
+      <%= form.radio_button :item_type, "Dairy", class: "radio-b", required: true %>
       <%= form.label :item_type, "Meat", :value => "Meat" %>
-      <%= form.radio_button :item_type, "Meat", class: "radio-b" %>
+      <%= form.radio_button :item_type, "Meat", class: "radio-b", required: true %>
       <%= form.label :item_type, "Other (describe below)", :value => "Other" %>
-      <%= form.radio_button :item_type, "Other", class: "radio-b" %>
+      <%= form.radio_button :item_type, "Other", class: "radio-b", required: true %>
       <small class="form-text text-muted">This will help viewers when searching for requests, so make sure it is representative of the request.</small>
     </div>
     <hr>
@@ -62,7 +62,7 @@
     <div class="actions">
       <div class="center">
         <%= link_to 'Cancel Entry', requests_path, class:"btn btn-secondary btn-large" %>
-        <%= form.submit "Create Request", class:"btn btn-primary btn-large" %>
+        <%= form.submit "Confirm Request", class:"btn btn-primary btn-large" %>
       </div>
     </div>
   <% end %>

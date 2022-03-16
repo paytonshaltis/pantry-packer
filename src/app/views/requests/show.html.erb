@@ -12,7 +12,7 @@
 
 <div class="jumbotron">
   <h1 class="display-4"><strong><%= @user.pantry_name %></strong></h1>
-  <p class="lead"><strong><%= @request.name %> </strong> <em>First requested on <%= @request.created_at %></em></p>
+  <p class="lead"><strong style="font-weight: bold;"><%= @request.name %> </strong><br><em style="font-size: .9em;">First requested on <%= @request.created_at %></em></p>
   <p>
     Request Item Type: <%= @request.item_type %>
     <br>
@@ -21,11 +21,20 @@
   <hr class="my-4">
   <p>
     <%= @user.pantry_desc %>
+    <hr>
+    <% if @user.pantry_link[0] %>
+      Visit our website to learn more about our pantry: <%= link_to "https://" + @user.pantry_link, "https://" + @user.pantry_link, target: :_blank %><br>
+      <small class="form-text text-muted">The pantry representative provided this as their website, in case the above link doesn't work: <%= @user.pantry_link %></small>
+    <% else %>
+      <small class="form-text text-muted">The pantry representative did not provide a link for their website. Check their pantry's description for possible contact info.</small>
+    <% end %>
     <br>
-    <br>
-    Visit our website to learn more about our pantry: <%= link_to "https://" + @user.pantry_link, "https://" + @user.pantry_link, target: :_blank %>
-    <br>
-    Deciding whether or not to make the drive? We are located <%= link_to "here", "https://www.google.com/maps/search/" + @processed_location, target: :_blank %>.
+    <% if @user.pantry_location[0] %>
+      Deciding whether or not to make the drive? We are located <%= link_to "here", "https://www.google.com/maps/search/" + @processed_location, target: :_blank %>.
+      <small class="form-text text-muted">The pantry representative provided this as their location, in case the above link doesn't work: <%= @user.pantry_location %></small>
+   <% else %>
+      <small class="form-text text-muted">The pantry representative did not provide a location for their website. Check their pantry's description for possible contact info.</small>
+   <% end %>
   </p>
 
   <br>
