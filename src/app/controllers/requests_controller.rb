@@ -8,6 +8,8 @@ class RequestsController < ApplicationController
 
   # GET /requests/1 or /requests/1.json
   def show
+    @user = RequestsController.get_associated_user(@request.user_id)
+    @processed_location = @user.pantry_location.gsub(" ", "+")
   end
 
   # GET /requests/new
@@ -89,6 +91,11 @@ class RequestsController < ApplicationController
         end
       }
       return count
+    end
+
+    # Returns the User object associated with the passed request user_id.
+    def self.get_associated_user(user_id)
+      return User.where("id = " + user_id.to_s)[0]
     end
 
 end

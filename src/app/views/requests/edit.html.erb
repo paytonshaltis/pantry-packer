@@ -1,6 +1,10 @@
-<h1>Editing Request</h1>
+<h1>
+  <%= current_user.pantry_name %>
+  <small class="text-muted"> - Edit a Request</small>
+</h1>
+
+<hr>
+
+<h2>Modify an Existing Request</h2>Make any modifications necessary for this request below. Any information that is not changed will remain the same, so you only need to modify what doesn't look quite right.</p>
 
 <%= render 'form', request: @request %>
-
-<%= link_to 'Show', @request %> |
-<%= link_to 'Back', requests_path %>

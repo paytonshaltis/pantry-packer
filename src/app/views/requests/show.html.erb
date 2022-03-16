@@ -1,22 +1,38 @@
-<p>
-  <strong>Name:</strong>
-  <%= @request.name %>
-</p>
+<h1>
+  <%= current_user.pantry_name %>
+  <small class="text-muted"> - Viewing a Request</small>
+</h1>
 
-<p>
-  <strong>Item type:</strong>
-  <%= @request.item_type %>
-</p>
+<hr>
 
-<p>
-  <strong>Description:</strong>
-  <%= @request.description %>
-</p>
+<h2>Everything Look Good?</h2>
+<p>This is how others will see your this request when browsing on Pantry Packer. Use this screen to ensure that everything looks as it should. If something is not correct, use the 'edit' button to modify your request. You can always use the 'account' button to edit information regarding your pantry.</p>
 
-<p>
-  <strong>Ispositive:</strong>
-  <%= @request.ispositive %>
-</p>
+<hr>
 
-<%= link_to 'Edit', edit_request_path(@request) %> |
-<%= link_to 'Back', requests_path %>
+<div class="jumbotron">
+  <h1 class="display-4"><strong><%= @user.pantry_name %></strong></h1>
+  <p class="lead"><strong><%= @request.name %> </strong> <em>First requested on <%= @request.created_at %></em></p>
+  <p>
+    Request Item Type: <%= @request.item_type %>
+    <br>
+    <%= @request.description %>
+  </p>
+  <hr class="my-4">
+  <p>
+    <%= @user.pantry_desc %>
+    <br>
+    <br>
+    Visit our website to learn more about our pantry: <%= link_to "https://" + @user.pantry_link, "https://" + @user.pantry_link, target: :_blank %>
+    <br>
+    Deciding whether or not to make the drive? We are located <%= link_to "here", "https://www.google.com/maps/search/" + @processed_location, target: :_blank %>.
+  </p>
+
+  <br>
+  <br>
+
+  <div class="center">
+    <%= link_to 'Back', requests_path, class:"btn btn-secondary btn-large" %>
+    <%= link_to 'Edit This Request', edit_request_path(@request), class:"btn btn-primary btn-large" %>
+  </div>
+</div>

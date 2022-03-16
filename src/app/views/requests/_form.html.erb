@@ -1,40 +1,71 @@
-<%= form_with(model: request, local: true) do |form| %>
-  <% if request.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(request.errors.count, "error") %> prohibited this request from being saved:</h2>
+<div class="form-wrapper">
+  <%= form_with(model: request, local: true) do |form| %>
+    <% if request.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(request.errors.count, "error") %> prohibited this request from being saved:</h2>
 
-      <ul>
-        <% request.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% request.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label "Request Name: ", class: "form-label" %><br>
+      <%= form.text_field :name, class:"fill-field form-control", placehoder: true %>
+      <small class="form-text text-muted">This is the first thing that viewers will see when they find your request.</small>
+    </div>
+    <hr>
+    <div class="field">
+      <%= form.label "Request Item Type:", class: "form-label" %><br />
+      <%= form.label :item_type, "Canned Good", :value => "Canned Good" %>
+      <%= form.radio_button :item_type, "Canned Good", class: "radio-b" %>
+      <%= form.label :item_type, "Fruit", :value => "Fruit"%>
+      <%= form.radio_button :item_type, "Fruit", class: "radio-b" %>
+      <%= form.label :item_type, "Vegetable", :value => "Vegetable" %>
+      <%= form.radio_button :item_type, "Vegetable", class: "radio-b" %>
+      <%= form.label :item_type, "Grain", :value => "Grain" %>
+      <%= form.radio_button :item_type, "Grain", class: "radio-b" %><br>
+      <%= form.label :item_type, "Protein", :value => "Protein" %>
+      <%= form.radio_button :item_type, "Protein", class: "radio-b" %>
+      <%= form.label :item_type, "Dairy", :value => "Dairy" %>
+      <%= form.radio_button :item_type, "Dairy", class: "radio-b" %>
+      <%= form.label :item_type, "Meat", :value => "Meat" %>
+      <%= form.radio_button :item_type, "Meat", class: "radio-b" %>
+      <%= form.label :item_type, "Other (describe below)", :value => "Other" %>
+      <%= form.radio_button :item_type, "Other", class: "radio-b" %>
+      <small class="form-text text-muted">This will help viewers when searching for requests, so make sure it is representative of the request.</small>
+    </div>
+    <hr>
+    <div class="field">
+      <%= form.label "Provide any additional information to viewers:", class: "form-label" %><br>
+      <%= form.text_area :description, size: "1x5", class: "fill-field form-control" %>
+      <small class="form-text text-muted">Context is good for providing viewers (and potential donors) with more information about your request. If you marked 'other' above, then you should definitely include the relevant type here.</small>
+    </div>
+    <hr>
+    <div class="field">
+      <%= form.label "Is your request encouraging or discouraging an item?", class: "form-label" %><br>
+      <%= form.label :ispositive, "Encourage", :value => "true" %>
+      <%= form.radio_button :ispositive, "true", class: "radio-b" %>
+      <%= form.label :ispositive, "Discourage", :value => "false" %>
+      <%= form.radio_button :ispositive, "false", class: "radio-b" %>
+      <small class="form-text text-muted">In other words, are you requesting people <em>donate</em> a certain item or are you requesting people <em>not donate</em> a certain item?</small>
+    </div>
+
+    <%# Does the user --> request association under the hood. %>
+    <%= form.number_field :user_id, value: current_user.id, type: "hidden" %>
+
+    <br>
+
+    <div class="actions">
+      <div class="center">
+        <%= link_to 'Cancel Entry', requests_path, class:"btn btn-secondary btn-large" %>
+        <%= form.submit "Create Request", class:"btn btn-primary btn-large" %>
+      </div>
     </div>
   <% end %>
+</div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :item_type %>
-    <%= form.text_field :item_type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, size: "70x5" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ispositive %>
-    <%= form.check_box :ispositive %>
-  </div>
-
-  <%# Does the user --> request association under the hood. %>
-  <%= form.number_field :user_id, value: current_user.id, type: "hidden" %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+<br>

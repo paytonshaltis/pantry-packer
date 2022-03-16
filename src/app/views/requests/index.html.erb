@@ -52,7 +52,7 @@
 
             <%# Give the pantry representative the option to manipulate requests. %>
             <td><div class="center"><%= link_to 'Show', request, class:"btn btn-sm btn-secondary"%></div></td>
-            <td><div class="center"><%= link_to 'Close', request, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %></div></td>
+            <td><div class="center"><%= link_to 'Close', request, method: :delete, data: { confirm: 'Are you sure you want to close this request? This will remove the request from your account permanently.' }, class:"btn btn-sm btn-danger" %></div></td>
           </tr>
         <% end %>
       <% end %>

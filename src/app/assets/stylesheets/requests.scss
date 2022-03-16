@@ -41,3 +41,26 @@ div.right-align {
   justify-content: space-around;
   align-items: center;
 }
+
+div.form-wrapper {
+  background-color: rgb(241, 241, 241);
+  padding: 15px;
+  border-radius: 15px;
+  filter: drop-shadow(2px 2px 2px #c9c9c9);
+  width: 65%;
+  margin: 0 auto;
+}
+
+.form-label {
+  font-size: 1.15em;
+  font-weight: bold;
+}
+
+.radio-b {
+  margin-right: 10px;
+}
+
+.fill-field {
+  resize: none;
+  width: 100%;
+}

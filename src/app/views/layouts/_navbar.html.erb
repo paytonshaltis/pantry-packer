@@ -27,7 +27,7 @@
     <%# Link to manage pantry requests. %>
     <% if user_signed_in? %>
       <li class="nav-item">
-        <% if request.path == '/requests' %>
+        <% if request.path == '/requests' || request.path == '/requests/new' || request.path.match(/\/requests\/*/) %>
           <%= link_to 'Manage Pantry', requests_path, class:"nav-link active" %>
         <% else %>
           <%= link_to 'Manage Pantry', requests_path, class:"nav-link" %>
