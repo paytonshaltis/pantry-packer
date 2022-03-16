@@ -44,11 +44,19 @@
     <% if user_signed_in? %>
     <li class="nav-item">
       <%= link_to "Logout", destroy_user_session_path, class: "btn btn-outline-danger", method: :delete %>
-      <%= link_to "Account", edit_user_registration_path, class: "btn btn-outline-primary" %>
+      <% if request.path.match(/\/user\/*/)%>
+        <%= link_to "Account", edit_user_registration_path, class: "btn btn-primary" %>
+      <% else %>
+        <%= link_to "Account", edit_user_registration_path, class: "btn btn-outline-primary" %>
+      <% end %>
     </li>
     <% else %>
     <li class="nav-item">
-      <%= button_to "Log In", new_user_session_path, class: "btn btn-outline-primary" %>
+      <% if request.path.match(/\/user\/*/)%>
+        <%= button_to "Log In", new_user_session_path, class: "btn btn-primary" %>
+      <% else %>
+        <%= button_to "Log In", new_user_session_path, class: "btn btn-outline-primary" %>
+      <% end %>
     </li>
     <% end %>
   </ul>
