@@ -7,7 +7,6 @@ div.table-container {
   border-radius: 10px;
 }
 
-
 tr.header {
   background-color: black;
   color: white;
@@ -23,11 +22,6 @@ tr.data:hover {
   transform: scale(1.0125);
 }
 
-div.center {
-  text-align: center;
-  margin: 0 auto;
-}
-
 .container h2 {
   font-size: 1.2em;
 }
@@ -36,31 +30,6 @@ div.right-align {
   text-align: right;
 }
 
-.flexy {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-div.form-wrapper {
-  background-color: rgb(241, 241, 241);
-  padding: 15px;
-  border-radius: 15px;
-  filter: drop-shadow(2px 2px 2px #c9c9c9);
-  width: 65%;
-  margin: 0 auto;
-}
-
-.form-label {
-  font-size: 1.15em;
-  font-weight: bold;
-}
-
 .radio-b {
   margin-right: 10px;
-}
-
-.fill-field {
-  resize: none;
-  width: 100%;
 }

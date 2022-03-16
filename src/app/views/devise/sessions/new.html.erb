@@ -1,26 +1,41 @@
-<h2>Log in</h2>
+<h1>
+  Welcome Back
+  <small class="text-muted"> - Log In</small>
+</h1>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<hr>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+<h2>Get Back in the Action</h2>
+<p>Sign in to Pantry Packer to manage requests for your pantry. Use the buttons below to create an account if you are new to the site or if you forgot the password to your account.</p>
 
-  <% if devise_mapping.rememberable? %>
+<hr>
+
+<div class="form-wrapper-50">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :email, class:"form-label" %><br/>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"fill-field form-control" %>
     </div>
+    <br>
+    <div class="field">
+      <%= f.label :password, class:"form-label" %><br/>
+      <%= f.password_field :password, autocomplete: "current-password", class:"fill-field form-control" %>
+    </div>
+    <% if devise_mapping.rememberable? %>
+      <div class="field remember">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Log in", class:"btn btn-primary btn-large" %>
+    </div>
+
+    <hr>
+
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="center">
+    <%= link_to "Sign up", new_registration_path(resource_name) %> |   <%= link_to "Forgot your password?", new_password_path(resource_name) %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

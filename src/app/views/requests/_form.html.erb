@@ -1,4 +1,4 @@
-<div class="form-wrapper">
+<div class="form-wrapper-65">
   <%= form_with(model: request, local: true) do |form| %>
     <% if request.errors.any? %>
       <div id="error_explanation">
@@ -14,7 +14,7 @@
 
     <div class="field">
       <%= form.label "Request Name: ", class: "form-label" %><br>
-      <%= form.text_field :name, class:"fill-field form-control", placehoder: true %>
+      <%= form.text_field :name, class:"fill-field form-control" %>
       <small class="form-text text-muted">This is the first thing that viewers will see when they find your request.</small>
     </div>
     <hr>
