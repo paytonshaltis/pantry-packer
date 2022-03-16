@@ -11,4 +11,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   # See if the current user is logged in
   before_action :authenticate_user!
+
+  # Handles any routing errors gracefully.
+  def not_found
+    render "home/index"
+  end
 end

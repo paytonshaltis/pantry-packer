@@ -48,9 +48,9 @@
     <div class="field">
       <%= form.label "Is your request encouraging or discouraging an item?", class: "form-label" %><br>
       <%= form.label :ispositive, "Encourage", :value => "true" %>
-      <%= form.radio_button :ispositive, "true", class: "radio-b" %>
+      <%= form.radio_button :ispositive, "true", class: "radio-b", required: true %>
       <%= form.label :ispositive, "Discourage", :value => "false" %>
-      <%= form.radio_button :ispositive, "false", class: "radio-b" %>
+      <%= form.radio_button :ispositive, "false", class: "radio-b", required: true %>
       <small class="form-text text-muted">In other words, are you requesting people <em>donate</em> a certain item or are you requesting people <em>not donate</em> a certain item?</small>
     </div>
 

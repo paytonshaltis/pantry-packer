@@ -18,5 +18,8 @@ Rails.application.routes.draw do
 
   # Devise login and account views.
   devise_for :users, :controllers => {registrations: 'users/registrations'}
-  get '/users/edit'
+
+  # Handles any routing errors gracefully.
+  get '*unmatched_route', to: 'application#not_found'
+
 end

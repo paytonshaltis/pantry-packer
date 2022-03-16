@@ -25,9 +25,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+
+    # Need to delete all associations before deleting this user.
+    requests = Request.where("user_id = " + current_user.id.to_s)
+    requests.each { |request|
+      request.destroy
+    }
+    
+    # Delete the user (devise default destroy method).
+    super
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
