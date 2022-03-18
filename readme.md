@@ -1,6 +1,17 @@
 ### Payton Shaltis CSC-415-01
 # Assignment 2 - Pantry Packer
 
+## (NEW) Analysis and Design Documents
+The documents for Assignment 2-C can be found in the `docs` folder. Below are the links to the informational pages with the embeded diagrams:
+
+- [Use Case Diagram](./docs/pages/use_case_diagram.md)
+- [Use Case Descriptions](./docs/pages/use_case_descriptions.md)
+- [Design Class Diagram](./docs/pages/class_diagram.md)
+- [System Sequence Diagrams](./docs/pages/sequence_diagrams.md)
+- [Statechart](./docs/pages/statechart.md)
+- [User Interface Mockups](./docs/pages/ui_mockups.md)
+- [Test Cases](./docs/pages/testing.md)
+
 ## What is Pantry Packer?
 A single database and network for food pantries to indicate which food items they currently require or possess in excess, allowing users to tailor donations to specific locations.
 
