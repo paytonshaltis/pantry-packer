@@ -11,7 +11,8 @@ class HomeController < ApplicationController
   end
 
   # Viewing requests page
-  def view_requests
+  def search
+    @requests = Request.all
   end
   
 end

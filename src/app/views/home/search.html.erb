@@ -1,0 +1,48 @@
+<h1>
+  View Requests
+  <small class="text-muted"> - Search and Filter Pantries</small>
+</h1>
+
+<hr>
+
+<div class="search-panel">
+
+    <%# Form for searching and filtering. %>
+    <%= form_tag(home_search_path, method: :get, class:"form-tag") do %>
+        <%= text_field_tag("search_text", params[:search_text], placeholder:"Search pantry name, item, or description.", id:"search_text") %>
+    <% end %>
+
+</div>
+
+<hr>
+
+<%# Show requests from every pantry account. %>
+<table class="table table-hover table-borderless">
+    <thead>
+      <tr class="header">
+        <th>Pantry Name</th>
+        <th>Requested Item</th>
+        <th>Item Type</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @requests.each do |request| %>
+          
+        <%# Row color changes based on request type. %>
+        <% if request.ispositive %>
+            <tr class="table-success data">
+        <% else %>
+            <tr class="table-danger data">
+        <% end %>
+            <td><%= User.where('id = ' + request.user_id.to_s)[0].pantry_name %></td>
+            <td class="name"><strong><%= request.name %></strong></td>
+            <td><%= request.item_type %></td>
+
+            <%# Give the pantry representative the option to manipulate requests. %>
+            <td><div class="center"><%= link_to 'Show', request, class:"btn btn-sm btn-secondary"%></div></td>
+
+      <% end %>
+    </tbody>
+  </table>

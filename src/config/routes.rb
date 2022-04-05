@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   # The page for viewing all requests from all pantries.
-  get 'home/view_requests'
+  get 'home/search'
 
   # Devise login and account views.
   devise_for :users, :controllers => {registrations: 'users/registrations'}

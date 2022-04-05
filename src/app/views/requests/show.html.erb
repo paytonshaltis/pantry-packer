@@ -41,7 +41,11 @@
   <br>
 
   <div class="center">
-    <%= link_to 'Back', requests_path, class:"btn btn-secondary btn-large" %>
-    <%= link_to 'Edit This Request', edit_request_path(@request), class:"btn btn-primary btn-large" %>
+    <%= link_to 'Back', url_for(:back), class:"btn btn-secondary btn-large" %>
+    
+    <%# Only give edit permissions to the user who created the request. %>
+    <% if current_user.id == @user.id %>
+      <%= link_to 'Edit This Request', edit_request_path(@request), class:"btn btn-primary btn-large" %>
+    <% end %>
   </div>
 </div>

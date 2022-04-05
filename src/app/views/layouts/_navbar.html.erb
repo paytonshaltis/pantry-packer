@@ -17,10 +17,10 @@
     
     <%# Link to view all requests. %>
     <li class="nav-item">
-      <% if request.path == '/home/view_requests'%>
-        <%= link_to 'View Requests', home_view_requests_path, class:"nav-link active" %>
+      <% if request.path == '/home/search'%>
+        <%= link_to 'View Requests', home_search_path, class:"nav-link active" %>
       <% else %>
-        <%= link_to 'View Requests', home_view_requests_path, class:"nav-link" %>
+        <%= link_to 'View Requests', home_search_path, class:"nav-link" %>
       <% end %>
     </li>
 
