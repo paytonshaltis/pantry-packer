@@ -13,6 +13,8 @@ class HomeController < ApplicationController
   # Viewing requests page
   def search
     @requests = Request.all
+
+    puts params
   end
   
 end
