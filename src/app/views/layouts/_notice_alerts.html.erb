@@ -1,8 +1,8 @@
 <%# Partial for any notices or alerts below the nav bar. %>
 
-<% if notice %>
+<% if notice && request.path != '/'%>
   <p class="alert alert-success"><%= notice %></p>
 <% end %>
-<% if alert %>
+<% if alert && request.path != '/'%>
   <p class="alert alert-danger"><%= alert %></p>
 <% end %>
