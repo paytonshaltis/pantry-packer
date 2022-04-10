@@ -16,14 +16,40 @@
         <br>
 
         <%# Checkboxes for each of the item types. %>
-        <%= check_box_tag("canned_good", "true", false, class:"checkbox") %> <span>Canned Good</span>
-        <%= check_box_tag("fruit", "true", false, class:"checkbox") %> <span>Fruit</span>
-        <%= check_box_tag("vegetable", "true", false, class:"checkbox") %> <span>Vegetable</span>
-        <%= check_box_tag("grain", "true", false, class:"checkbox") %> <span>Grain</span>
-        <%= check_box_tag("Protein", "true", false, class:"checkbox") %> <span>Protein</span>
-        <%= check_box_tag("Dairy", "true", false, class:"checkbox") %> <span>Dairy</span>
-        <%= check_box_tag("Meat", "true", false, class:"checkbox") %> <span>Meat</span>
-        <%= check_box_tag("Other", "true", false, class:"checkbox") %> <span>Other</span>
+        <div class="checkboxes">
+          <div>
+            <%= check_box_tag("canned_good_id", "true", false, class:"checkbox") %> 
+            <%= label_tag "canned_good_id", "Canned Good" %>
+          </div>
+          <div>
+            <%= check_box_tag("fruit_id", "true", false, class:"checkbox") %> 
+            <%= label_tag "fruit_id", "Fruit" %>
+          </div>
+          <div>
+            <%= check_box_tag("vegetable_id", "true", false, class:"checkbox") %> 
+            <%= label_tag "vegetable_id", "Vegetable" %>
+          </div>
+          <div>
+            <%= check_box_tag("grain_id", "true", false, class:"checkbox") %> 
+            <%= label_tag "grain_id", "Grain" %>
+          </div>
+          <div>
+            <%= check_box_tag("protein_id", "true", false, class:"checkbox") %> 
+            <%= label_tag "protein_id", "Protein" %>
+          </div>
+          <div>
+            <%= check_box_tag("dairy_id", "true", false, class:"checkbox") %> 
+            <%= label_tag "dairy_id", "Dairy" %>
+          </div>
+          <div>
+            <%= check_box_tag("meat_id", "true", false, class:"checkbox") %> 
+            <%= label_tag "meat_id", "Meat" %>
+          </div>
+          <div>
+            <%= check_box_tag("other_id", "true", false, class:"checkbox") %> 
+            <%= label_tag "other_id", "Other" %>
+          </div>
+        </div>
 
     <% end %>
 

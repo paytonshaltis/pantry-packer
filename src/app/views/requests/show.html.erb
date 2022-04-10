@@ -1,37 +1,53 @@
+<%# If the user is logged in, put pantry in the title.%>
 <h1>
+<% if user_signed_in? %>
   <%= current_user.pantry_name %>
+<% else %>
+  Food Donor
+<% end %>
   <small class="text-muted"> - Viewing a Request</small>
 </h1>
-
 <hr>
 
-<h2>Everything Look Good?</h2>
-<p>This is how others will see your this request when browsing on Pantry Packer. Use this screen to ensure that everything looks as it should. If something is not correct, use the 'edit' button to modify your request. You can always use the 'account' button to edit information regarding your pantry.</p>
-
-<hr>
+<%# If the request belongs to the user, give them additional information.%>
+<% if user_signed_in? && current_user.id == @user.id %>
+  <h2>Everything Look Good?</h2>
+  <p>This is how others will see your this request when browsing on Pantry Packer. Use this screen to ensure that everything looks as it should. If something is not correct, use the 'edit' button to modify your request. You can always use the 'account' button to edit information regarding your pantry.</p>
+  <hr>
+<% end %>
 
 <div class="jumbotron">
-  <h1 class="display-4"><strong><%= @user.pantry_name %></strong></h1>
-  <p class="lead"><strong style="font-weight: bold;"><%= @request.name %> </strong><br><em style="font-size: .9em;">First requested on <%= @request.created_at %></em></p>
+  <h1 class="display-4"><strong><%= @request.name %></strong></h1>
+  <p class="lead"><strong style="font-weight: bold;"><%= @user.pantry_name %> </strong><br><em style="font-size: .9em;">First requested on <%= @request.created_at %></em></p>
   <p>
-    Request Item Type: <%= @request.item_type %>
+    <strong>Request Item Type:</strong> <%= @request.item_type %>
     <br>
-    <%= @request.description %>
+    <strong>Request Description:</strong>
+    <% if !@request.description.blank? %>
+      <%= @request.description %>
+    <% else %>
+      No request description provided.
+    <% end %>
   </p>
   <hr class="my-4">
   <p>
-    <%= @user.pantry_desc %>
+    <strong>Pantry Description:</strong>
+    <% if !@user.pantry_desc.blank? %>
+      <%= @user.pantry_desc %>
+    <% else %>
+      No pantry description provided.
+    <% end %>
     <hr>
     <% if @user.pantry_link[0] %>
       Visit our website to learn more about our pantry: <%= link_to "https://" + @user.pantry_link, "https://" + @user.pantry_link, target: :_blank %><br>
-      <small class="form-text text-muted">The pantry representative provided this as their website, in case the above link doesn't work: <%= @user.pantry_link %></small>
+      <small class="form-text text-muted">The pantry representative provided this as their website, in case the above link doesn't work: <em><%= @user.pantry_link %></small></em>
     <% else %>
       <small class="form-text text-muted">The pantry representative did not provide a link for their website. Check their pantry's description for possible contact info.</small>
     <% end %>
     <br>
     <% if @user.pantry_location[0] %>
       Deciding whether or not to make the drive? We are located <%= link_to "here", "https://www.google.com/maps/search/" + @processed_location, target: :_blank %>.
-      <small class="form-text text-muted">The pantry representative provided this as their location, in case the above link doesn't work: <%= @user.pantry_location %></small>
+      <small class="form-text text-muted">The pantry representative provided this as their location, in case the above link doesn't work: <em><%= @user.pantry_location %></small></em>
    <% else %>
       <small class="form-text text-muted">The pantry representative did not provide a location for their website. Check their pantry's description for possible contact info.</small>
    <% end %>
@@ -44,7 +60,7 @@
     <%= link_to 'Back', url_for(:back), class:"btn btn-secondary btn-large" %>
     
     <%# Only give edit permissions to the user who created the request. %>
-    <% if current_user.id == @user.id %>
+    <% if user_signed_in? && current_user.id == @user.id %>
       <%= link_to 'Edit This Request', edit_request_path(@request), class:"btn btn-primary btn-large" %>
     <% end %>
   </div>
