@@ -1,6 +1,34 @@
 ### Payton Shaltis CSC-415-01
 # Assignment 2 - Pantry Packer
 
+## (NEW) Analysis and Design Documents
+
+### What's Implemented?
+- Creating an account as a Pantry Representative.
+- Updating account details and cancelling account.
+    - All associated data is updated / cancelled with the editing of a Pantry Representative's account.
+- Creating requests as a pantry.
+- Seeing all requests that belong to the representative's pantry.
+    - This includes seeing quick summaries of <em>all</em> requests as well as seeing individual requests in greater detail. 
+- Updating and deleting requests belonging to the representative's pantry.
+
+### What Needs Implementation?
+- Home page for application information and links.
+- Request viewing, filtering, and sorting page for food donors.
+- Uniform styling for all pages of the application.
+- More fields per request, implementation of other 'time permitting' features, etc.
+
+### Design Documents
+The documents for Assignment 2-C can be found in the `docs` folder. Below are the links to the informational pages with the embeded diagrams:
+
+- [Use Case Diagram](./docs/pages/use_case_diagram.md)
+- [Use Case Descriptions](./docs/pages/use_case_descriptions.md)
+- [Design Class Diagram](./docs/pages/class_diagram.md)
+- [System Sequence Diagrams](./docs/pages/sequence_diagrams.md)
+- [Statechart](./docs/pages/statechart.md)
+- [User Interface Mockups](./docs/pages/ui_mockups.md)
+- [Test Cases](./docs/pages/testing.md)
+
 ## What is Pantry Packer?
 A single database and network for food pantries to indicate which food items they currently require or possess in excess, allowing users to tailor donations to specific locations.
 

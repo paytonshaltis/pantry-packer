@@ -7,29 +7,19 @@
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 Rails.application.routes.draw do
+  resources :requests
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  # The root page, e.g. www.example.com/, is sent here
-  # root 'controller#method_in_controller'
-  root 'home#index'
-  # Devise authentification pages. This controlls the user login
-  # and authentification system.
-  devise_for :users
 
-  # Examples:
-  #
-  # # Add app CRUD operations from a controller. Used with scaffolding.
-  # # CRUD -> create (API/POST), new (page/GET), index, show,
-  #           edit(page/GET), update(API/PATCH|PUT), destroy(API/DELETE)
-  # resources :my_controller
-  #
-  # # Add GET path for photos controller, index method
-  # get 'photos/index'
-  #
-  # # Resources, but only register these methods
-  # resources :photos, only: [:index, :new, :create, :destroy]
-  #
-  # # Add PUT path for the given url, but send it to a different controller
-  # # than rails would assume by the name. to: 'controller#method_name'.
-  # # It would have extected to: 'add_tags#add', which would fail
-  # put '/add_tags/add', to: 'users#add_tags'
+  # The root, true homepage of the application.
+  root 'home#index'
+
+  # The page for viewing all requests from all pantries.
+  get 'home/view_requests'
+
+  # Devise login and account views.
+  devise_for :users, :controllers => {registrations: 'users/registrations'}
+
+  # Handles any routing errors gracefully.
+  get '*unmatched_route', to: 'application#not_found'
+
 end

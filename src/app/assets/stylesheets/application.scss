@@ -29,3 +29,71 @@
 // and require_self *cannot* be removed.
 
 // Your code here...
+
+.active {
+  text-decoration: underline;
+}
+
+div.form-wrapper-65 {
+  background-color: rgb(241, 241, 241);
+  padding: 15px;
+  border-radius: 15px;
+  filter: drop-shadow(2px 2px 2px #c9c9c9);
+  width: 65%;
+  margin: 0 auto;
+}
+
+div.form-wrapper-50 {
+  background-color: rgb(241, 241, 241);
+  padding: 30px 50px 30px 50px;
+  border-radius: 15px;
+  filter: drop-shadow(2px 2px 2px #c9c9c9);
+  width: 50%;
+  margin: 0 auto;
+}
+
+.form-label {
+  font-size: 1.15em;
+  font-weight: bold;
+}
+
+.fill-field {
+  resize: none;
+  width: 100%;
+}
+
+div.center {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.remember {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.flexy-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+}
+
+.flexy-end {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.flexy-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-item {
+  flex: 15;
+}
+
+.flex-spacer {
+  flex: 1;
+}

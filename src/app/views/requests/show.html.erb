@@ -1,0 +1,47 @@
+<h1>
+  <%= current_user.pantry_name %>
+  <small class="text-muted"> - Viewing a Request</small>
+</h1>
+
+<hr>
+
+<h2>Everything Look Good?</h2>
+<p>This is how others will see your this request when browsing on Pantry Packer. Use this screen to ensure that everything looks as it should. If something is not correct, use the 'edit' button to modify your request. You can always use the 'account' button to edit information regarding your pantry.</p>
+
+<hr>
+
+<div class="jumbotron">
+  <h1 class="display-4"><strong><%= @user.pantry_name %></strong></h1>
+  <p class="lead"><strong style="font-weight: bold;"><%= @request.name %> </strong><br><em style="font-size: .9em;">First requested on <%= @request.created_at %></em></p>
+  <p>
+    Request Item Type: <%= @request.item_type %>
+    <br>
+    <%= @request.description %>
+  </p>
+  <hr class="my-4">
+  <p>
+    <%= @user.pantry_desc %>
+    <hr>
+    <% if @user.pantry_link[0] %>
+      Visit our website to learn more about our pantry: <%= link_to "https://" + @user.pantry_link, "https://" + @user.pantry_link, target: :_blank %><br>
+      <small class="form-text text-muted">The pantry representative provided this as their website, in case the above link doesn't work: <%= @user.pantry_link %></small>
+    <% else %>
+      <small class="form-text text-muted">The pantry representative did not provide a link for their website. Check their pantry's description for possible contact info.</small>
+    <% end %>
+    <br>
+    <% if @user.pantry_location[0] %>
+      Deciding whether or not to make the drive? We are located <%= link_to "here", "https://www.google.com/maps/search/" + @processed_location, target: :_blank %>.
+      <small class="form-text text-muted">The pantry representative provided this as their location, in case the above link doesn't work: <%= @user.pantry_location %></small>
+   <% else %>
+      <small class="form-text text-muted">The pantry representative did not provide a location for their website. Check their pantry's description for possible contact info.</small>
+   <% end %>
+  </p>
+
+  <br>
+  <br>
+
+  <div class="center">
+    <%= link_to 'Back', requests_path, class:"btn btn-secondary btn-large" %>
+    <%= link_to 'Edit This Request', edit_request_path(@request), class:"btn btn-primary btn-large" %>
+  </div>
+</div>

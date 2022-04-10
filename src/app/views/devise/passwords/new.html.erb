@@ -1,0 +1,32 @@
+<h1>
+  Forgot Your Password
+  <small class="text-muted"> - Instructions for Resetting</small>
+</h1>
+
+<hr>
+
+<h2>Recover your Account</h2>
+<p>Use the form below to get instructions for resetting your password via email. Be sure to enter the email associated with your account in order to receive the instructions. Note that the email may take a few minutes to send.</p>
+
+<hr>
+
+<%= render "devise/shared/error_messages", resource: resource %>
+
+
+<div class="form-wrapper-50">
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+    <div class="field">
+      <%= f.label :email, class:"form-label" %><br>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"fill-field form-control" %>
+    </div>
+    <br>
+    <div class="actions center">
+      <%= f.submit "Send Password Reset Instructions", class:"btn btn-secondary btn-large" %>
+    </div>
+  <% end %>
+  <hr>
+  <div class="center">
+    <%= link_to "Log in", new_session_path(resource_name) %> | <%= link_to "Sign up", new_registration_path(resource_name) %>
+  </div>
+</div>

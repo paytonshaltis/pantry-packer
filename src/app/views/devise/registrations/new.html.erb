@@ -1,0 +1,79 @@
+<h1>
+  Represent a Pantry
+  <small class="text-muted"> - Sign Up</small>
+</h1>
+
+<hr>
+
+<h2>Create and Account</h2>
+<p>Represent a food pantry and become a member of Pantry Packer today! Sign your organization up for an account to begin posting requests for viewers to see. Complete the form below to provide us with your organization's information so you can start taking advantage of the website!</p>
+
+<hr>
+
+<%= render "devise/shared/error_messages", resource: resource %>
+
+<div class="form-wrapper-65">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      
+    <div class="field">
+      <%= f.label :email, class:"form-label" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"fill-field form-control" %>
+      <small class="form-text text-muted">Other users of the site cannot see your organization's email.</small>
+    </div>
+    <br>
+    <div class="flexy-end">
+      <div class="field flex-item">
+        <%= f.label :password, class:"form-label" %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class:"fill-field form-control" %>
+      </div>
+      <div class="flex-spacer"></div>
+      <div class="field flex-item">
+        <%= f.label :password_confirmation, class:"form-label" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"fill-field form-control" %>
+      </div>
+    </div>
+  
+    <hr>
+
+    <div class="flexy-top">
+      <div class="field flex-item">
+        <%= f.label "Pantry Name", class:"form-label" %><br />
+        <%= f.text_field :pantry_name, class:"fill-field form-control", required: true %>
+        <small class="form-text text-muted">Enter the name as you want it to be seen by other users.</small>
+      </div>
+      <div class="flex-spacer"></div>
+      <div class="field flex-item">
+        <%= f.label "Website Link", class:"form-label" %><br />
+        <%= f.text_field :pantry_link, class:"fill-field form-control" %>
+        <small class="form-text text-muted">Start your link with "www."</small>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="field">
+      <%= f.label "Pantry Location", class:"form-label" %><br />
+      <%= f.text_field :pantry_location, class:"fill-field form-control" %>
+        <small class="form-text text-muted">Other users will see this.</small>
+    </div>
+
+    <br>
+
+    <div class="field">
+      <%= f.label "Pantry Description", class:"form-label" %><br />
+      <%= f.text_area :pantry_desc, size:"70x5", class:"fill-field form-control" %>
+    </div>
+
+    <br>
+
+    <div class="actions center">
+      <%= f.submit "Create Account", class:"btn btn-primary btn-large" %>
+    </div>
+  <% end %>
+</div>
+
+<br>
+<br>

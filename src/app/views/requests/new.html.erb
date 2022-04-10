@@ -1,0 +1,11 @@
+<h1>
+  <%= current_user.pantry_name %>
+  <small class="text-muted"> - Create New Request</small>
+</h1>
+
+<hr>
+
+<h2>Creating a New Request</h2>
+<p>Fill out the form below in order to add your request to Pantry Packer. Be sure to include any extra details in the 'request description' field in order to give more context to viewers of your request.</p>
+
+<%= render 'form', request: @request %>

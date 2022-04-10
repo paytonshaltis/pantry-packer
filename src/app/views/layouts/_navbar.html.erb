@@ -1,0 +1,64 @@
+<%# Partial for the navigation bar.%>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  
+  <%# Link to home page (branding). %>
+  <%= link_to app_name, root_path, class:'navbar-brand' %>
+  
+  <%# Toggling nav bar with smaller viewport. %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+  aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <%# List of nav bar links. %>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav mr-auto">
+    
+    <%# Link to view all requests. %>
+    <li class="nav-item">
+      <% if request.path == '/home/view_requests'%>
+        <%= link_to 'View Requests', home_view_requests_path, class:"nav-link active" %>
+      <% else %>
+        <%= link_to 'View Requests', home_view_requests_path, class:"nav-link" %>
+      <% end %>
+    </li>
+
+    <%# Link to manage pantry requests. %>
+    <% if user_signed_in? %>
+      <li class="nav-item">
+        <% if request.path == '/requests' || request.path == '/requests/new' || request.path.match(/\/requests\/*/) %>
+          <%= link_to 'Manage Pantry', requests_path, class:"nav-link active" %>
+        <% else %>
+          <%= link_to 'Manage Pantry', requests_path, class:"nav-link" %>
+        <% end %>
+      </li>
+    <% end %>
+
+  </ul>
+  <ul class="navbar-nav">
+
+    <%# If user signed in, show account, else sign in %>
+    <% if user_signed_in? %>
+    <li class="nav-item">
+      <%= link_to "Logout", destroy_user_session_path, class: "btn btn-outline-danger", method: :delete %>
+      <% if request.path.match(/\/user\/*/)%>
+        <%= link_to "Account", edit_user_registration_path, class: "btn btn-primary" %>
+      <% else %>
+        <%= link_to "Account", edit_user_registration_path, class: "btn btn-outline-primary" %>
+      <% end %>
+    </li>
+    <% else %>
+    <li class="nav-item">
+      <% if request.path.match(/\/user\/*/)%>
+        <%= button_to "Log In", new_user_session_path, class: "btn btn-primary" %>
+      <% else %>
+        <%= button_to "Log In", new_user_session_path, class: "btn btn-outline-primary" %>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+  </div>
+</nav>
+
+<br><br><br>
