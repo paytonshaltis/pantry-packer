@@ -7,10 +7,17 @@
   </div>
 </div>
 
-<div id="spacer"></div>
+<div id="spacer">
+  <button class="scroll-button" onclick="
+    document.querySelector('.scroll-to').scrollIntoView({ 
+      behavior: 'smooth' 
+    });
+    ">v
+  </button>
+</div>
 
 <div class="main-content">
-  <h3>Find the Perfect Pantry for You.</h3>
+  <h3 class="scroll-to">Find the Perfect Pantry for You.</h3>
   <h4 class="text-muted">Start donating today.</h4>
   <p>Use our <%= link_to 'View Requests', home_search_path%> page to search for pantries that are looking for what you have to donate. Have a particular pantry in mind? Look them up by name to see which items they currently need, and which items they already have a surplus of. Have items to donate that your go-to pantry isn't currently accepting? Search by item to find pantries that are in need of what you've got to give!</p>
 

@@ -7,7 +7,7 @@
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100vw;
+  width: 100%;
   height: 85vh;
   position: absolute;
   left: 0px;
@@ -17,6 +17,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 #spacer {
@@ -32,7 +33,6 @@
   height: fit-content;
   padding: 30px;
   text-align: center;
-
 }
 
 #page-top-text h1 {
@@ -94,9 +94,31 @@ div.checkboxes.left {
 }
 
 .checkbox-label-pair {
-  margin-right: 36px;
+  margin-right: 71px;
 }
 
 legend em {
   text-decoration: underline;
+}
+
+.scroll-to {
+  scroll-margin-top: 60px;
+}
+
+.scroll-button {
+  position: absolute;
+  top: 75vh;
+  right: calc(50% - 25px);
+  border: none;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: rgba(52, 58, 64, 0.5);
+  color: white;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.scroll-button:focus {
+  outline: 0;
 }
