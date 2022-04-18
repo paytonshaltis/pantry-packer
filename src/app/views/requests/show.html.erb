@@ -18,7 +18,11 @@
 
 <div class="jumbotron">
   <h1 class="display-4"><strong><%= @request.name %></strong></h1>
-  <p class="lead"><strong style="font-weight: bold;"><%= @user.pantry_name %> </strong><br><em style="font-size: .9em;">First requested on <%= @request.created_at %></em></p>
+  <p class="lead">
+    <strong>Pantry Name: </strong>
+    <strong style="font-weight: bold;">
+      <%= @user.pantry_name %> 
+    </strong><br><em style="font-size: .9em;">First requested on <%= @request.created_at.in_time_zone("America/New_York").strftime("%B %d, %Y at %I:%M %p") %> EST.</em></p>
   <p>
     <strong>Request Item Type:</strong> <%= @request.item_type %>
     <br>
@@ -59,9 +63,10 @@
   <div class="center">
     <%= link_to 'Back', url_for(:back), class:"btn btn-secondary btn-large" %>
     
-    <%# Only give edit permissions to the user who created the request. %>
+    <%# Only give edit / delete permissions to the user who created the request. %>
     <% if user_signed_in? && current_user.id == @user.id %>
       <%= link_to 'Edit This Request', edit_request_path(@request), class:"btn btn-primary btn-large" %>
+      <%= link_to 'Close', "#{@request.id}", method: :delete, data: { confirm: 'Are you sure you want to close this request? This will remove the request from your account permanently.' }, class:"btn btn-large btn-danger" %>
     <% end %>
   </div>
 </div>
