@@ -10,46 +10,110 @@
         
         <%# The search bar for pantry name, item name, and description. %>
         <div class="search-panel">
-            <%= text_field_tag("search_text", params[:search_text], placeholder:"Search pantry name, item, or description.", id:"search_text") %>
+          <div class="input-group mb-3">
+            <%= text_field_tag("search_text", params[:search_text], class:"form-control", placeholder:"Search pantry name, item, or description.") %>
+            <div class="input-group-append">
+              <%= submit_tag('Search', class: "btn btn-primary")%>
+            </div>
+          </div>
         </div>
-
         <br>
 
         <%# Checkboxes for each of the item types. %>
-        <div class="checkboxes">
-          <div>
-            <%= check_box_tag("canned_good_id", "true", false, class:"checkbox") %> 
-            <%= label_tag "canned_good_id", "Canned Good" %>
+        <fieldset>
+        <legend><em>Filter by Food Type:</em></legend>
+          <div class="checkboxes left">
+            <div class="checkbox-label-pair">
+              <% if @canned_good_checked %>
+                <%= check_box_tag("canned_good_id", "true", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("canned_good_id", "true", false, class:"checkbox") %> 
+              <% end %>
+              <%= label_tag "canned_good_id", "Canned Good" %>
+            </div>
+            <div class="checkbox-label-pair">
+              <% if @fruit_checked %>
+                <%= check_box_tag("fruit_id", "true", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("fruit_id", "true", false, class:"checkbox") %> 
+              <% end %>
+              <%= label_tag "fruit_id", "Fruit" %>
+            </div>
+            <div class="checkbox-label-pair">
+              <% if @vegetable_checked %>
+                <%= check_box_tag("vegetable_id", "true", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("vegetable_id", "true", false, class:"checkbox") %> 
+              <% end %>
+              <%= label_tag "vegetable_id", "Vegetable" %>
+            </div>
+            <div class="checkbox-label-pair">
+              <% if @grain_checked %>
+                <%= check_box_tag("grain_id", "true", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("grain_id", "true", false, class:"checkbox") %> 
+              <% end %>
+              <%= label_tag "grain_id", "Grain" %>
+            </div>
+            <div class="checkbox-label-pair">
+              <% if @protein_checked %>
+                <%= check_box_tag("protein_id", "true", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("protein_id", "true", false, class:"checkbox") %>   
+              <% end %>
+              <%= label_tag "protein_id", "Protein" %>
+            </div>
+            <div class="checkbox-label-pair">
+              <% if @dairy_checked %>
+                <%= check_box_tag("dairy_id", "true", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("dairy_id", "true", false, class:"checkbox") %> 
+              <% end %>
+              <%= label_tag "dairy_id", "Dairy" %>
+            </div>
+            <div class="checkbox-label-pair">
+              <% if @meat_checked %>
+                <%= check_box_tag("meat_id", "true", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("meat_id", "true", false, class:"checkbox") %> 
+              <% end %>
+                <%= label_tag "meat_id", "Meat" %>
+            </div>
+            <div class="checkbox-label-pair">
+            <% if @other_checked %>
+              <%= check_box_tag("other_id", "true", true, class:"checkbox") %> 
+            <% else %>
+              <%= check_box_tag("other_id", "true", false, class:"checkbox") %> 
+            <% end %>
+              <%= label_tag "other_id", "Other" %>
+            </div>
           </div>
-          <div>
-            <%= check_box_tag("fruit_id", "true", false, class:"checkbox") %> 
-            <%= label_tag "fruit_id", "Fruit" %>
+        </fieldset>
+
+        <br>
+
+        <%# Checkboxes for each of the request types. %>
+        <fieldset>
+        <legend><em>Filter by Request Type:</em></legend>
+          <div class="checkboxes left">
+            <div class="checkbox-label-pair">
+              <% if @positive_checked %>
+                <%= check_box_tag("positive_id", "true", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("positive_id", "true", false, class:"checkbox") %> 
+              <% end %>
+              <%= label_tag "positive_id", "Positive Requests" %>
+            </div>
+            <div class="checkbox-label-pair">
+              <% if @negative_checked %>
+                <%= check_box_tag("negative_id", "true", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("negative_id", "true", false, class:"checkbox") %> 
+              <% end %>
+              <%= label_tag "negative_id", "Negative Requests" %>
+            </div>
           </div>
-          <div>
-            <%= check_box_tag("vegetable_id", "true", false, class:"checkbox") %> 
-            <%= label_tag "vegetable_id", "Vegetable" %>
-          </div>
-          <div>
-            <%= check_box_tag("grain_id", "true", false, class:"checkbox") %> 
-            <%= label_tag "grain_id", "Grain" %>
-          </div>
-          <div>
-            <%= check_box_tag("protein_id", "true", false, class:"checkbox") %> 
-            <%= label_tag "protein_id", "Protein" %>
-          </div>
-          <div>
-            <%= check_box_tag("dairy_id", "true", false, class:"checkbox") %> 
-            <%= label_tag "dairy_id", "Dairy" %>
-          </div>
-          <div>
-            <%= check_box_tag("meat_id", "true", false, class:"checkbox") %> 
-            <%= label_tag "meat_id", "Meat" %>
-          </div>
-          <div>
-            <%= check_box_tag("other_id", "true", false, class:"checkbox") %> 
-            <%= label_tag "other_id", "Other" %>
-          </div>
-        </div>
+        </fieldset>
 
     <% end %>
 

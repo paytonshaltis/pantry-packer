@@ -14,7 +14,21 @@ class HomeController < ApplicationController
   def search
     @requests = Request.all
 
-    puts params
+    # Store the parameters passed from the search field of the view.
+    search_text = params[:search_text];
+    @canned_good_checked = params[:canned_good_id] ? true : false;
+    @fruit_checked = params[:fruit_id] ? true : false;
+    @vegetable_checked = params[:vegetable_id] ? true : false;
+    @grain_checked = params[:grain_id] ? true : false;
+    @protein_checked = params[:protein_id] ? true : false;
+    @dairy_checked = params[:dairy_id] ? true : false;
+    @meat_checked = params[:meat_id] ? true : false;
+    @other_checked = params[:other_id] ? true : false;
+    @positive_checked = params[:positive_id] ? true : false;
+    @negative_checked = params[:negative_id] ? true : false;
+
+    # First, query requests by 
+
   end
   
 end
