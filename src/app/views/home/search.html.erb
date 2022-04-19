@@ -131,6 +131,7 @@
       </tr>
     </thead>
 
+    <%# If the search / filter options yeild any requests... %>
     <tbody>
       <% @requests_to_display.each do |request| %>
           
@@ -150,3 +151,8 @@
       <% end %>
     </tbody>
   </table>
+
+  <%# If no requests match the current search / filter options... %>
+  <% if @requests_to_display.empty?() %>
+    <h2 class="search-failure">Your search did not match any requests. Try being more general in your search term / filters.</h2>
+  <% end %>
