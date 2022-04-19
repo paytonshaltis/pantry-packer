@@ -13,19 +13,18 @@
         <%# The search bar for pantry name, item name, and description. %>
         <div class="search-panel">
           <div class="input-group mb-3">
-            <%= text_field_tag("search_text", params[:search_text], class:"form-control", placeholder:"Search pantry name, item, or description.") %>
+            <%= text_field_tag("search_text", params[:search_text], class:"form-control search-bar", placeholder:"Search pantry name, item, or description.") %>
             <div class="input-group-append">
               <%= submit_tag('Search', class: "btn btn-primary")%>
             </div>
           </div>
         </div>
-        <br>
 
         <%# Checkboxes for each of the item types. %>
         <fieldset>
         <legend><em>Filter by Food Type:</em></legend>
-          <div class="checkboxes left">
-            <div class="checkbox-label-pair">
+          <div class="checkboxes center">
+            <div>
               <% if @canned_good_checked %>
                 <%= check_box_tag("canned_good_id", "true", true, class:"checkbox") %> 
               <% else %>
@@ -33,7 +32,7 @@
               <% end %>
               <%= label_tag "canned_good_id", "Canned Good" %>
             </div>
-            <div class="checkbox-label-pair">
+            <div>
               <% if @fruit_checked %>
                 <%= check_box_tag("fruit_id", "true", true, class:"checkbox") %> 
               <% else %>
@@ -41,7 +40,7 @@
               <% end %>
               <%= label_tag "fruit_id", "Fruit" %>
             </div>
-            <div class="checkbox-label-pair">
+            <div>
               <% if @vegetable_checked %>
                 <%= check_box_tag("vegetable_id", "true", true, class:"checkbox") %> 
               <% else %>
@@ -49,7 +48,7 @@
               <% end %>
               <%= label_tag "vegetable_id", "Vegetable" %>
             </div>
-            <div class="checkbox-label-pair">
+            <div>
               <% if @grain_checked %>
                 <%= check_box_tag("grain_id", "true", true, class:"checkbox") %> 
               <% else %>
@@ -57,7 +56,7 @@
               <% end %>
               <%= label_tag "grain_id", "Grain" %>
             </div>
-            <div class="checkbox-label-pair">
+            <div>
               <% if @protein_checked %>
                 <%= check_box_tag("protein_id", "true", true, class:"checkbox") %> 
               <% else %>
@@ -65,7 +64,7 @@
               <% end %>
               <%= label_tag "protein_id", "Protein" %>
             </div>
-            <div class="checkbox-label-pair">
+            <div>
               <% if @dairy_checked %>
                 <%= check_box_tag("dairy_id", "true", true, class:"checkbox") %> 
               <% else %>
@@ -73,7 +72,7 @@
               <% end %>
               <%= label_tag "dairy_id", "Dairy" %>
             </div>
-            <div class="checkbox-label-pair">
+            <div>
               <% if @meat_checked %>
                 <%= check_box_tag("meat_id", "true", true, class:"checkbox") %> 
               <% else %>
@@ -81,7 +80,7 @@
               <% end %>
                 <%= label_tag "meat_id", "Meat" %>
             </div>
-            <div class="checkbox-label-pair">
+            <div>
             <% if @other_checked %>
               <%= check_box_tag("other_id", "true", true, class:"checkbox") %> 
             <% else %>
@@ -133,7 +132,7 @@
     </thead>
 
     <tbody>
-      <% @requests.each do |request| %>
+      <% @requests_to_display.each do |request| %>
           
         <%# Row color changes based on request type. %>
         <% if request.ispositive %>
