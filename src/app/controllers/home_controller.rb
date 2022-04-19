@@ -12,7 +12,6 @@ class HomeController < ApplicationController
 
   # Viewing requests page
   def search
-    @requests = Request.all;
     @requests_to_display = nil;
 
     # Store the parameters passed from the search field of the view.
@@ -39,9 +38,11 @@ class HomeController < ApplicationController
     end
 
     # Need to query for requests matching: 
-    # (1) request name            # (2) request description
+    # (1) request name            # (3) item type
+    # (2) request description
     request_matches = Request.where("lower(name) LIKE ?", "%#{query_text}%") | 
-                      Request.where("lower(description) LIKE ?", "%#{query_text}%");
+                      Request.where("lower(description) LIKE ?", "%#{query_text}%") |
+                      Request.where("lower(item_type) LIKE ?", "%#{query_text}%");
 
     # Need to query for pantries matching: 
     # (1) pantry name             # (3) pantry description   
