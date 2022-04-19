@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 
   # Viewing requests page
   def search
-    @requests_to_display = nil;
+    @requests_to_display = Request.all;
 
     # Store the parameters passed from the search field of the view.
     search_text = params[:search_text];
@@ -68,9 +68,49 @@ class HomeController < ApplicationController
     }
 
     # Merge the request matches and requests from user matches.
-    @requests_to_display = (request_matches + associated_requests).uniq();
+    all_search_results = (request_matches + associated_requests).uniq();
 
-    # Filter the requests to display by the checkboxes.
+    # Fill the array of allowed food types.
+    allowed_food_types = [];
+    all_food_types = [:canned_good_id, :fruit_id, :vegetable_id, :grain_id, :protein_id, :dairy_id, :meat_id, :other_id];
+    all_food_types.each { |type|
+      allowed_food_types.push(params[type]) if params[type];
+    }
+
+    # Fill the array of allowed request types.
+    allowed_request_types = [];
+    all_request_types = [:positive_id, :negative_id];
+    all_request_types.each { |type|
+      allowed_request_types.push(params[type]) if params[type];
+    }
+
+    # Filter the requests by the checkbox options to be displayed.
+    marked_for_removal = [];
+    all_search_results.each { |request|
+      
+      # Make sure the request contains at least one checked food type.
+      if !allowed_food_types.empty?() && !(allowed_food_types.include?(request.item_type.downcase()))
+        marked_for_removal.push(request);
+        puts request.item_type + " IS NOT IN " + allowed_food_types.to_s();
+        puts "MARKED " + request.to_s();
+      end
+
+      # Make sure the request matches one of the request types.
+      if !allowed_request_types.empty?() && !((allowed_request_types.include?("positive") && request.ispositive.to_s() == "true") || (allowed_request_types.include?("negative") && request.ispositive.to_s() == "false"))
+        marked_for_removal.push(request);
+        puts request.ispositive.to_s() + " IS NOT IN " + allowed_request_types.to_s();
+        puts "MARKED " + request.to_s();
+      end
+    }
+
+    # Remove the marked requests.
+    marked_for_removal.each { |marked|
+      all_search_results.delete(marked);
+      puts "REMOVED " + marked.to_s();
+    }
+
+    # The list of requests is now ready to be displayed.
+    @requests_to_display = all_search_results;
 
   end
   
