@@ -13,13 +13,13 @@
     <% end %>
 
     <div class="field">
-      <%= form.label "Request Name: ", class: "form-label" %><br>
+      <%= form.label "Request Name: *", class: "form-label" %><br>
       <%= form.text_field :name, class:"fill-field form-control", required: true %>
       <small class="form-text text-muted">This is the first thing that viewers will see when they find your request.</small>
     </div>
     <hr>
     <div class="field">
-      <%= form.label "Request Item Type:", class: "form-label" %><br />
+      <%= form.label "Request Item Type: *", class: "form-label" %><br />
       <%= form.label :item_type, "Canned Good", :value => "Canned Good" %>
       <%= form.radio_button :item_type, "Canned Good", class: "radio-b", required: true %>
       <%= form.label :item_type, "Fruit", :value => "Fruit"%>
@@ -46,7 +46,7 @@
     </div>
     <hr>
     <div class="field">
-      <%= form.label "Is your request encouraging or discouraging an item?", class: "form-label" %><br>
+      <%= form.label "Is your request encouraging or discouraging an item? *", class: "form-label" %><br>
       <%= form.label :ispositive, "Encourage", :value => "true" %>
       <%= form.radio_button :ispositive, "true", class: "radio-b", required: true %>
       <%= form.label :ispositive, "Discourage", :value => "false" %>
