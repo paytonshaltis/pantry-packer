@@ -1,3 +1,9 @@
+# Project name: Pantry Packer
+# Description: A single database and network for food pantries to request food items.
+# Filename: registrations_controller.rb
+# Description: Logic for the acocunt management pages.
+# Last modified on: 4/19/22
+
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController

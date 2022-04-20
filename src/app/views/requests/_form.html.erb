@@ -1,3 +1,11 @@
+<%# 
+  Project name: Pantry Packer
+  Description: A single database and network for food pantries to request food items.
+  Filename: _form.html.erb
+  Description: Partial view for forms related to creating / editing requests.
+  Last modified on: 4/19/22 
+%>
+
 <div class="form-wrapper-65">
   <%= form_with(model: request, local: true) do |form| %>
     <% if request.errors.any? %>

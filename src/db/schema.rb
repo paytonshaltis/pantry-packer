@@ -1,3 +1,9 @@
+# Project name: Pantry Packer
+# Description: A single database and network for food pantries to request food items.
+# Filename: schema.rb
+# Description: Auto-generated file representing the current database tables.
+# Last modified on: 4/19/22 
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.

@@ -1,3 +1,9 @@
+# Project name: Pantry Packer
+# Description: A single database and network for food pantries to request food items.
+# Filename: routes.rb
+# Description: Contains the valid routes for navigating the application.
+# Last modified on: 4/19/22 
+
 # frozen_string_literal: true
 
 # This file tells the Rails server how incoming requests are sent to which

@@ -1,3 +1,9 @@
+# Project name: Pantry Packer
+# Description: A single database and network for food pantries to request food items.
+# Filename: home_controller.rb
+# Description: Logic for the home and search pages.
+# Last modified on: 4/19/22
+
 # frozen_string_literal: true
 
 # Controller for the home page already made for you

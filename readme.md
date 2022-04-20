@@ -4,6 +4,9 @@
 ## (NEW) Analysis and Design Documents
 
 ### What's Implemented?
+- Home page for application information and links.
+- Request viewing, filtering, and sorting page for food donors.
+- Uniform styling for all pages of the application.
 - Creating an account as a Pantry Representative.
 - Updating account details and cancelling account.
     - All associated data is updated / cancelled with the editing of a Pantry Representative's account.
@@ -11,12 +14,6 @@
 - Seeing all requests that belong to the representative's pantry.
     - This includes seeing quick summaries of <em>all</em> requests as well as seeing individual requests in greater detail. 
 - Updating and deleting requests belonging to the representative's pantry.
-
-### What Needs Implementation?
-- Home page for application information and links.
-- Request viewing, filtering, and sorting page for food donors.
-- Uniform styling for all pages of the application.
-- More fields per request, implementation of other 'time permitting' features, etc.
 
 ### Design Documents
 The documents for Assignment 2-C can be found in the `docs` folder. Below are the links to the informational pages with the embeded diagrams:

@@ -1,3 +1,9 @@
+# Project name: Pantry Packer
+# Description: A single database and network for food pantries to request food items.
+# Filename: requests_controller.rb
+# Description: Logic for the request management pages.
+# Last modified on: 4/19/22
+
 class RequestsController < ApplicationController
   before_action :set_request, only: %i[ show edit update destroy ]
   skip_before_action :authenticate_user!, only: %i[ show ]
