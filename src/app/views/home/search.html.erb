@@ -13,7 +13,7 @@
         <%# The search bar for pantry name, item name, and description. %>
         <div class="search-panel">
           <div class="input-group mb-3">
-            <%= text_field_tag("search_text", params[:search_text], class:"form-control search-bar", placeholder:"Search pantry name, item, or description.") %>
+            <%= text_field_tag("search_text", params[:search_text], class:"form-control search-bar", placeholder:"Pantry name, item, or description.") %>
             <div class="input-group-append">
               <%= submit_tag('Search', class: "btn btn-primary")%>
             </div>
@@ -141,8 +141,8 @@
         <% else %>
             <tr class="table-danger data">
         <% end %>
-            <td><%= User.where('id = ' + request.user_id.to_s)[0].pantry_name %></td>
-            <td class="name"><strong><%= request.name %></strong></td>
+            <td><strong><%= User.where('id = ' + request.user_id.to_s)[0].pantry_name %></strong></td>
+            <td class="name"><%= request.name %></td>
             <td><%= request.item_type %></td>
 
             <%# Give the pantry representative the option to manipulate requests. %>
