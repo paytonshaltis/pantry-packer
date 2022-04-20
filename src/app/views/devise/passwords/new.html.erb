@@ -1,3 +1,11 @@
+<%# 
+  Project name: Pantry Packer
+  Description: A single database and network for food pantries to request food items.
+  Filename: new.html.erb
+  Description: View for sending password changing instructions.
+  Last modified on: 4/19/22 
+%>
+
 <h1>
   Forgot Your Password
   <small class="text-muted"> - Instructions for Resetting</small>
@@ -10,22 +18,29 @@
 
 <hr>
 
+<%# Standard error messages for Devise. %>
 <%= render "devise/shared/error_messages", resource: resource %>
 
-
+<%# Form for entering user information for changing password. %>
 <div class="form-wrapper-50">
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
 
+    <%# Field for entering a valid email. %>
     <div class="field">
       <%= f.label :email, class:"form-label" %><br>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"fill-field form-control" %>
     </div>
     <br>
+
+    <%# Submit button. %>
     <div class="actions center">
       <%= f.submit "Send Password Reset Instructions", class:"btn btn-secondary btn-large" %>
     </div>
   <% end %>
+
   <hr>
+
+  <%# Links back to the log in and sign up pages. %>
   <div class="center">
     <%= link_to "Log in", new_session_path(resource_name) %> | <%= link_to "Sign up", new_registration_path(resource_name) %>
   </div>

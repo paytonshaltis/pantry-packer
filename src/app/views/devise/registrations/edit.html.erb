@@ -22,6 +22,8 @@
     <h2>Unhappy with Pantry Packer?</h2>
     <p>If you don't want your organization's data stored on Pantry Packer any more, use the 'Remove Account' button to permanently erase all data associated with your account. Your pantry's information, as well as any requests that you have made, will all be permanently erased.</p>
   </div>
+
+  <%# Button for cancelling an account, which in turn deletes all user requests. %>
   <div>
     <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure you want to permanently delete your account? All stored data and requests will be permanently deleted." }, method: :delete, class:"btn btn-danger btn-large" %></p>
   </div>
@@ -29,11 +31,14 @@
 
 <hr>
 
+<%# Standard error messages for Devise. %>
 <%= render "devise/shared/error_messages", resource: resource %>
 
+<%# Form for editing existing pantry information. %>
 <div class="form-wrapper-65">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
 
+    <%# Current password field; required for making changes. %>
     <div class="field">
       <%= f.label :current_password.to_s() + " *", class:"form-label" %> <i>(required for any change)</i><br />
       <%= f.password_field :current_password, autocomplete: "current-password", class:"fill-field form-control" %>
@@ -41,6 +46,7 @@
 
     <hr>
 
+    <%# Email field. %>
     <div class="field">
       <%= f.label :email.to_s() + " *", class:"form-label" %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"fill-field form-control", required: true %>
@@ -53,6 +59,8 @@
     <% end %>
 
     <div class="flexy-end">
+
+      <%# New password field. %>
       <div class="field flex-item">
         <%= f.label "New Password", class:"form-label" %>
         <% if @minimum_password_length %>
@@ -62,6 +70,8 @@
         <%= f.password_field :password, autocomplete: "new-password", class:"fill-field form-control" %>
       </div>
       <div class="flex-spacer"></div>
+
+      <%# Confirm new password field. %>
       <div class="field flex-item">
         <%= f.label "Confirm New Password", class:"form-label" %><br />
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"fill-field form-control" %>
@@ -71,11 +81,15 @@
     <hr>
 
     <div class="flexy-top">
+
+      <%# Pantry name field. %>
       <div class="field flex-item">
         <%= f.label "Pantry Name *", class:"form-label" %><br />
         <%= f.text_field :pantry_name, class:"fill-field form-control", required: true %>
       </div>
       <div class="flex-spacer"></div>
+
+      <%# Website link field. %>
       <div class="field flex-item">
         <%= f.label "Website Link", class:"form-label" %><br />
         <%= f.text_field :pantry_link, class:"fill-field form-control" %>
@@ -84,6 +98,7 @@
 
     <br>
 
+    <%# Pantry location field. %>
     <div class="field">
       <%= f.label "Pantry Location", class:"form-label" %><br />
       <%= f.text_field :pantry_location, class:"fill-field form-control" %>
@@ -91,6 +106,7 @@
 
     <br>
 
+    <%# Pantry description field. %>
     <div class="field">
       <%= f.label "Pantry Description", class:"form-label" %><br />
       <%= f.text_area :pantry_desc, size:"70x5", class:"fill-field form-control" %>
@@ -98,6 +114,7 @@
 
     <br>
 
+    <%# Confirmation button for updating account information. %>
     <div class="actions center">
       <%= f.submit "Update Account Information", class:"btn btn-primary btn-large" %>
     </div>

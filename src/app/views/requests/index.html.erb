@@ -26,15 +26,20 @@
 
 <hr>
 
+<%# Show a message if the user does not currently have any requests. %>
 <% if RequestsController.get_total_requests(current_user.id) == 0%>
   <div class="center">
     <h3>You don't have any requests yet.</h3>
   </div>
+
+<%# Otherwise, create a table of all of their associated requests. %>
 <% else %>
   <table class="table table-hover table-borderless">
+    
+    <%# The most important request details: name, type, and description. %>
     <thead>
       <tr class="header">
-        <th>Requested Item</th>
+        <th>Request Name</th>
         <th>Item Type</th>
         <th>Request Description</th>
         <th colspan="2"></th>
@@ -42,6 +47,8 @@
     </thead>
 
     <tbody>
+
+      <%# Need to go through each of the requests in the database. %>
       <% @requests.each do |request| %>
 
         <%# Only show the request if it belongs to the user. %>
@@ -53,6 +60,8 @@
           <% else %>
             <tr class="table-danger data">
           <% end %>
+
+            <%# Show the full name of the request. %>
             <td class="name"><strong><%= request.name %></strong></td>
             <td><%= request.item_type %></td>
             
@@ -62,6 +71,7 @@
             <%# Give the pantry representative the option to manipulate requests. %>
             <td><div class="center"><%= link_to 'Show', request, class:"btn btn-sm btn-secondary"%></div></td>
             <td><div class="center"><%= link_to 'Close', request, method: :delete, data: { confirm: 'Are you sure you want to close this request? This will remove the request from your account permanently.' }, class:"btn btn-sm btn-danger" %></div></td>
+          
           </tr>
         <% end %>
       <% end %>
@@ -70,7 +80,3 @@
 <% end %>
 
 <br>
-
-<!--
-  <td><%= link_to 'Edit', edit_request_path(request), class:"btn btn-sm btn-primary" %></td>
--->

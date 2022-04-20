@@ -8,6 +8,7 @@
 
 # Controller for the home page already made for you
 class HomeController < ApplicationController
+
   # No sign in needed to access these pages
   # Overrides ApplicationController's instructions to check for login by default
   skip_before_action :authenticate_user!
@@ -18,9 +19,13 @@ class HomeController < ApplicationController
 
   # Viewing requests page
   def search
+
+    # By defauly, all requests should be displayed.
     @requests_to_display = Request.all;
 
     # Store the parameters passed from the search field of the view.
+    # These are used to keep proper checkboxes checked upon navigation back
+    # to the 'search' page after clicking 'search'.
     search_text = params[:search_text];
     @canned_good_checked = params[:canned_good_id] ? true : false;
     @fruit_checked = params[:fruit_id] ? true : false;
@@ -62,7 +67,6 @@ class HomeController < ApplicationController
     matching_ids = [];
     user_matches.each { |user|
       matching_ids.push(user.id);
-      puts user.id;
     }
 
     # Retrieve all requests with a matching user_id.
@@ -97,22 +101,17 @@ class HomeController < ApplicationController
       # Make sure the request contains at least one checked food type.
       if !allowed_food_types.empty?() && !(allowed_food_types.include?(request.item_type.downcase()))
         marked_for_removal.push(request);
-        puts request.item_type + " IS NOT IN " + allowed_food_types.to_s();
-        puts "MARKED " + request.to_s();
       end
 
       # Make sure the request matches one of the request types.
       if !allowed_request_types.empty?() && !((allowed_request_types.include?("positive") && request.ispositive.to_s() == "true") || (allowed_request_types.include?("negative") && request.ispositive.to_s() == "false"))
         marked_for_removal.push(request);
-        puts request.ispositive.to_s() + " IS NOT IN " + allowed_request_types.to_s();
-        puts "MARKED " + request.to_s();
       end
     }
 
     # Remove the marked requests.
     marked_for_removal.each { |marked|
       all_search_results.delete(marked);
-      puts "REMOVED " + marked.to_s();
     }
 
     # The list of requests is now ready to be displayed.

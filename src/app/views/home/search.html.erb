@@ -101,7 +101,7 @@
 
         <br>
 
-        <%# Checkboxes for each of the request types. %>
+        <%# Checkboxes for each of the request types (positive and negative). %>
         <fieldset>
         <legend><em>Filter by Request Type:</em></legend>
           <div class="checkboxes left">
@@ -145,22 +145,24 @@
           
         <%# Row color changes based on request type. %>
         <% if request.ispositive %>
-            <tr class="table-success data">
+          <tr class="table-success data">
         <% else %>
-            <tr class="table-danger data">
+          <tr class="table-danger data">
         <% end %>
-            <td><strong><%= User.where('id = ' + request.user_id.to_s)[0].pantry_name %></strong></td>
-            <td class="name"><%= request.name %></td>
-            <td><%= request.item_type %></td>
 
-            <%# Give the pantry representative the option to manipulate requests. %>
-            <td><div class="center"><%= link_to 'Show', request, class:"btn btn-sm btn-secondary"%></div></td>
+          <%# Pantry name, request name, item type data. %>
+          <td><strong><%= User.where('id = ' + request.user_id.to_s)[0].pantry_name %></strong></td>
+          <td class="name"><%= request.name %></td>
+          <td><%= request.item_type %></td>
+
+          <%# Button for showing the full details for a specific request. %>
+          <td><div class="center"><%= link_to 'Show', request, class:"btn btn-sm btn-secondary"%></div></td>
 
       <% end %>
     </tbody>
   </table>
 
-  <%# If no requests match the current search / filter options... %>
+  <%# If no requests match the current search / filter options, display message. %>
   <% if @requests_to_display.empty?() %>
     <h2 class="search-failure">Your search did not match any requests. Try being more general in your search term / filters.</h2>
   <% end %>

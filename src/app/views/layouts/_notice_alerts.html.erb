@@ -6,6 +6,7 @@
   Last modified on: 4/19/22 
 %>
 
+<%# Preventing alerts on the home page avoids spacing issues. %>
 <% if notice && request.path != '/'%>
   <p class="alert alert-success"><%= notice %></p>
 <% end %>
