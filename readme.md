@@ -1,24 +1,29 @@
 ### Payton Shaltis CSC-415-01
 # Assignment 2 - Pantry Packer
 
-## (NEW) Analysis and Design Documents
+## Installation and Usage Instructions
+[Get started with Pantry Packer](./docs/pages/installation_and_usage.md)
 
-### What's Implemented?
-- Creating an account as a Pantry Representative.
-- Updating account details and cancelling account.
-    - All associated data is updated / cancelled with the editing of a Pantry Representative's account.
-- Creating requests as a pantry.
-- Seeing all requests that belong to the representative's pantry.
-    - This includes seeing quick summaries of <em>all</em> requests as well as seeing individual requests in greater detail. 
-- Updating and deleting requests belonging to the representative's pantry.
+## Open Source Maintenance and Communication Guidelines
+[See how to contribute to this project.](./docs/pages/open_source_guidelines.md)
 
-### What Needs Implementation?
-- Home page for application information and links.
-- Request viewing, filtering, and sorting page for food donors.
-- Uniform styling for all pages of the application.
-- More fields per request, implementation of other 'time permitting' features, etc.
+## Implemented Features
+- Home Page: A basic informational home page with links to more important features, including
+viewing requests and adding requests of your own.
+- Request Searching / FIltering: A page dedicated to searching through the requests from all food
+pantries. Search strings can be combined with item and request types to narrow the search.
+- Full Account Management: Representatives of a pantry can create, edit, and delete the
+information associated with their account. These changes will be reflected within the requests that
+are viewed by potential donors. Deletion of an account also deletes all of the associated requests
+with that pantry.
+- Creating Requests: Once signed in as a pantry representative, you can create a new request to be
+seen by visitors of the site. Give a unique name, item type, description, and even indicate if you
+want to encourage or discourage the item specified.
+- Viewing / Managing Requests: A tab specifically for pantry representatives; this is your one place
+for viewing your own requests in greater detail. Update the information associated with each
+request, and even close (delete) those that have been fulfilled
 
-### Design Documents
+## Design Documents
 The documents for Assignment 2-C can be found in the `docs` folder. Below are the links to the informational pages with the embeded diagrams:
 
 - [Use Case Diagram](./docs/pages/use_case_diagram.md)

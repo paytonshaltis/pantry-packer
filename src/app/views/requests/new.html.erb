@@ -1,3 +1,11 @@
+<%# 
+  Project name: Pantry Packer
+  Description: A single database and network for food pantries to request food items.
+  Filename: new.html.erb
+  Description: View for creating a new request.
+  Last modified on: 4/19/22 
+%>
+
 <h1>
   <%= current_user.pantry_name %>
   <small class="text-muted"> - Create New Request</small>
@@ -8,4 +16,6 @@
 <h2>Creating a New Request</h2>
 <p>Fill out the form below in order to add your request to Pantry Packer. Be sure to include any extra details in the 'request description' field in order to give more context to viewers of your request.</p>
 
+<%# Simply renders the form used for request information. %>
+<%# edit.html.erb does the same thing here. %>
 <%= render 'form', request: @request %>

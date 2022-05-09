@@ -1,1 +1,52 @@
-<h2>This page and the 'view requests' page will be completed for the next prototype. Everything else is complete.</h2>
+<%# 
+  Project name: Pantry Packer
+  Description: A single database and network for food pantries to request food items.
+  Filename: index.html.erb
+  Description: View for the home page of the application.
+  Last modified on: 4/19/22 
+%>
+
+<%# Background image and pantry welcome message. %>
+<div id="page-top">
+  <div id="page-top-text">
+    <h1 class="header">Welcome to Pantry Packer.</h1>
+
+    <%# Show the pantry name if the user is logged in. %>
+    <% if user_signed_in? %>
+      <h2>Representing <%= current_user.pantry_name %></h2>
+    <% end %>
+
+  </div>
+</div>
+
+<%# Fancy little smooth scrolling button to the main content. %>
+<div id="spacer">
+  <button class="scroll-button" onclick="
+    document.querySelector('.scroll-to').scrollIntoView({ 
+      behavior: 'smooth' 
+    });
+    ">v
+  </button>
+</div>
+
+<br><br>
+
+<%# Small bits of informational text with links to major pages. %>
+<div class="main-content">
+
+  <%# Link and info to the 'search' page. %>
+  <h3 class="scroll-to">Find the Perfect Pantry for You.</h3>
+  <h4 class="text-muted">Start donating today.</h4>
+  <p>Use our <%= link_to 'View Requests', home_search_path%> page to search for pantries that are looking for what you have to donate. Have a particular pantry in mind? Look them up by name to see which items they currently need, and which items they already have a surplus of. Have items to donate that your go-to pantry isn't currently accepting? Search by item to find pantries that are in need of what you've got to give!</p>
+
+  <br><br>
+
+  <%# Link and info to the 'manage pantry' page. %>
+  <h3>Represent a Pantry and Start Making Requests.</h3>
+  <h4 class="text-muted">Get the word out there and get your shelves filled.</h4>
+  <p>Signing up for an account on Pantry Packer unlocks the ability to start making requests for the public to see. Once you create an account, visit the <%= link_to 'Manage Pantry', requests_path%> page to to add requests to your pantry. Need a certain item? Create a request asking food donors to bring a specific type of food. Already have a surplus of a particular item? Create a reqeust discouraging the donation of that item so that donors know that you already have enough.</p>
+
+</div>
+
+<br>
+<br>

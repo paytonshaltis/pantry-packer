@@ -1,8 +1,15 @@
-<%# Partial for any notices or alerts below the nav bar. %>
+<%# 
+  Project name: Pantry Packer
+  Description: A single database and network for food pantries to request food items.
+  Filename: _notice_alerts.html.erb
+  Description: Partial view for any notices or alerts below the nav bar.
+  Last modified on: 4/19/22 
+%>
 
-<% if notice %>
+<%# Preventing alerts on the home page avoids spacing issues. %>
+<% if notice && request.path != '/'%>
   <p class="alert alert-success"><%= notice %></p>
 <% end %>
-<% if alert %>
+<% if alert && request.path != '/'%>
   <p class="alert alert-danger"><%= alert %></p>
 <% end %>

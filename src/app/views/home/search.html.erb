@@ -1,0 +1,168 @@
+<%# 
+  Project name: Pantry Packer
+  Description: A single database and network for food pantries to request food items.
+  Filename: search.html.erb
+  Description: View for searching and filtering all requests.
+  Last modified on: 4/19/22 
+%>
+
+<h1>
+  View Requests
+  <small class="text-muted"> - Search and Filter Pantries</small>
+</h1>
+<hr>
+<h2>Find a Pantry to Assist.</h2>
+  <p>Use the options below to narrow your search and more effectively choose the best option for your donation. Search for pantries by entering their name, a request name, or part of a description to find matching results. Additionally, mark off the food and request type that you would like to filter your results by before clicking 'search.'</p>
+<hr>
+
+    <%# Form for searching and filtering. %>
+    <%= form_tag(home_search_path, method: :get, class:"form-tag") do %>
+        
+        <%# The search bar for pantry name, item name, and description. %>
+        <div class="search-panel">
+          <div class="input-group mb-3">
+            <%= text_field_tag("search_text", params[:search_text], class:"form-control search-bar", placeholder:"Pantry name, item, or description.") %>
+            <div class="input-group-append">
+              <%= submit_tag('Search', class: "btn btn-primary")%>
+            </div>
+          </div>
+        </div>
+
+        <%# Checkboxes for each of the item types. %>
+        <fieldset>
+        <legend><em>Filter by Food Type:</em></legend>
+          <div class="checkboxes center">
+            <div>
+              <% if @canned_good_checked %>
+                <%= check_box_tag("canned_good_id", "canned good", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("canned_good_id", "canned good", false, class:"checkbox") %> 
+              <% end %>
+              <%= label_tag "canned_good_id", "Canned Good" %>
+            </div>
+            <div>
+              <% if @fruit_checked %>
+                <%= check_box_tag("fruit_id", "fruit", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("fruit_id", "fruit", false, class:"checkbox") %> 
+              <% end %>
+              <%= label_tag "fruit_id", "Fruit" %>
+            </div>
+            <div>
+              <% if @vegetable_checked %>
+                <%= check_box_tag("vegetable_id", "vegetable", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("vegetable_id", "vegetable", false, class:"checkbox") %> 
+              <% end %>
+              <%= label_tag "vegetable_id", "Vegetable" %>
+            </div>
+            <div>
+              <% if @grain_checked %>
+                <%= check_box_tag("grain_id", "grain", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("grain_id", "grain", false, class:"checkbox") %> 
+              <% end %>
+              <%= label_tag "grain_id", "Grain" %>
+            </div>
+            <div>
+              <% if @protein_checked %>
+                <%= check_box_tag("protein_id", "protein", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("protein_id", "protein", false, class:"checkbox") %>   
+              <% end %>
+              <%= label_tag "protein_id", "Protein" %>
+            </div>
+            <div>
+              <% if @dairy_checked %>
+                <%= check_box_tag("dairy_id", "dairy", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("dairy_id", "dairy", false, class:"checkbox") %> 
+              <% end %>
+              <%= label_tag "dairy_id", "Dairy" %>
+            </div>
+            <div>
+              <% if @meat_checked %>
+                <%= check_box_tag("meat_id", "meat", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("meat_id", "meat", false, class:"checkbox") %> 
+              <% end %>
+                <%= label_tag "meat_id", "Meat" %>
+            </div>
+            <div>
+            <% if @other_checked %>
+              <%= check_box_tag("other_id", "other", true, class:"checkbox") %> 
+            <% else %>
+              <%= check_box_tag("other_id", "other", false, class:"checkbox") %> 
+            <% end %>
+              <%= label_tag "other_id", "Other" %>
+            </div>
+          </div>
+        </fieldset>
+
+        <br>
+
+        <%# Checkboxes for each of the request types (positive and negative). %>
+        <fieldset>
+        <legend><em>Filter by Request Type:</em></legend>
+          <div class="checkboxes left">
+            <div class="checkbox-label-pair">
+              <% if @positive_checked %>
+                <%= check_box_tag("positive_id", "positive", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("positive_id", "positive", false, class:"checkbox") %> 
+              <% end %>
+              <%= label_tag "positive_id", "Positive Requests" %>
+            </div>
+            <div class="checkbox-label-pair">
+              <% if @negative_checked %>
+                <%= check_box_tag("negative_id", "negative", true, class:"checkbox") %> 
+              <% else %>
+                <%= check_box_tag("negative_id", "negative", false, class:"checkbox") %> 
+              <% end %>
+              <%= label_tag "negative_id", "Negative Requests" %>
+            </div>
+          </div>
+        </fieldset>
+
+    <% end %>
+
+<hr>
+
+<%# Show requests from every pantry account. %>
+<table class="table table-hover table-borderless">
+    <thead>
+      <tr class="header">
+        <th>Pantry Name</th>
+        <th>Requested Item</th>
+        <th>Item Type</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <%# If the search / filter options yeild any requests... %>
+    <tbody>
+      <% @requests_to_display.each do |request| %>
+          
+        <%# Row color changes based on request type. %>
+        <% if request.ispositive %>
+          <tr class="table-success data">
+        <% else %>
+          <tr class="table-danger data">
+        <% end %>
+
+          <%# Pantry name, request name, item type data. %>
+          <td><strong><%= User.where('id = ' + request.user_id.to_s)[0].pantry_name %></strong></td>
+          <td class="name"><%= request.name %></td>
+          <td><%= request.item_type %></td>
+
+          <%# Button for showing the full details for a specific request. %>
+          <td><div class="center"><%= link_to 'Show', request, class:"btn btn-sm btn-secondary"%></div></td>
+
+      <% end %>
+    </tbody>
+  </table>
+
+  <%# If no requests match the current search / filter options, display message. %>
+  <% if @requests_to_display.empty?() %>
+    <h2 class="search-failure">Your search did not match any requests. Try being more general in your search term / filters.</h2>
+  <% end %>

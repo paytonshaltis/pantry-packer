@@ -1,5 +1,12 @@
+# Project name: Pantry Packer
+# Description: A single database and network for food pantries to request food items.
+# Filename: registrations_controller.rb
+# Description: Logic for the acocunt management pages.
+# Last modified on: 4/19/22
+
 # frozen_string_literal: true
 
+# Controller for handling the logic within the 'user' pages.
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
@@ -65,6 +72,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
+  #   requests_path
   # end
 end

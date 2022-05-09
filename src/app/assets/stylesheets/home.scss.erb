@@ -1,0 +1,134 @@
+// Project name: Pantry Packer
+// Description: A single database and network for food pantries to request food items.
+// Filename: home.scss.erb
+// Description: Styles that are used on the 'home' pages.
+// Last modified on: 4/19/22
+
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+#page-top {
+  background-image: url( <%= asset_path 'background.jpg' %>);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 85vh;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-attachment: fixed;
+  border-bottom: solid 1px #121213;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#spacer {
+  height: 80vh;
+}
+
+#page-top-text {
+  background-color: rgba(52, 58, 64, 0.5);
+  border-radius: 10px;
+  color: white;
+  margin-left: 10%;
+  margin-right: 10%;
+  height: fit-content;
+  padding: 30px;
+  text-align: center;
+}
+
+#page-top-text h1 {
+  font-size: 3.5em;
+  font-weight: bold;
+}
+
+#page-top-text h2 {
+  font-size: 2em;
+  font-style: italic;
+}
+
+h4.text-muted {
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+.main-content {
+  margin: 0 10%;
+  line-height: 1.7;
+}
+
+.search-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.search-panel .input-group {
+  width: 50%;
+}
+
+.search-bar.form-control {
+  font-size: 24px;
+}
+
+.form-tag {
+  width: 100%;
+}
+
+div.checkboxes {
+  display: flex;
+}
+
+div.checkboxes.center {
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+div.checkboxes.left {
+  justify-content: flex-start;
+  align-items: start;
+  flex-wrap: wrap;
+}
+
+.checkbox-label-pair {
+  margin-right: 32px;
+}
+
+legend em {
+  text-decoration: underline;
+  font-size: 20px;
+}
+
+.scroll-to {
+  scroll-margin-top: 60px;
+}
+
+.scroll-button {
+  position: absolute;
+  top: 75vh;
+  right: calc(50% - 25px);
+  border: none;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: rgba(52, 58, 64, 0.5);
+  color: white;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.scroll-button:focus {
+  outline: 0;
+}
+
+.search-failure {
+  text-align: center;
+  font-style: italic;
+  margin-top: 32px;
+}

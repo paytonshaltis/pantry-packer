@@ -1,3 +1,11 @@
+<%# 
+  Project name: Pantry Packer
+  Description: A single database and network for food pantries to request food items.
+  Filename: new.html.erb
+  Description: View for logging into a preexisting account.
+  Last modified on: 4/19/22 
+%>
+
 <h1>
   Welcome Back
   <small class="text-muted"> - Log In</small>
@@ -10,13 +18,18 @@
 
 <hr>
 
+<%# Form for signing into an existing account. %>
 <div class="form-wrapper-50">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    
+    <%# Email field. %>
     <div class="field">
       <%= f.label :email, class:"form-label" %><br/>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"fill-field form-control" %>
     </div>
     <br>
+
+    <%# Password field. %>
     <div class="field">
       <%= f.label :password, class:"form-label" %><br/>
       <%= f.password_field :password, autocomplete: "current-password", class:"fill-field form-control" %>
@@ -28,6 +41,7 @@
       </div>
     <% end %>
 
+    <%# Submission button for logging into an account. %>
     <div class="actions">
       <%= f.submit "Log in", class:"btn btn-primary btn-large" %>
     </div>
@@ -35,6 +49,8 @@
     <hr>
 
   <% end %>
+
+  <%# Links to sign up for a new account / forgot password pages. %>
   <div class="center">
     <%= link_to "Sign up", new_registration_path(resource_name) %> |   <%= link_to "Forgot your password?", new_password_path(resource_name) %>
   </div>

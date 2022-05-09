@@ -1,3 +1,11 @@
+<%# 
+  Project name: Pantry Packer
+  Description: A single database and network for food pantries to request food items.
+  Filename: edit.html.erb
+  Description: View for editing preexisting requests.
+  Last modified on: 4/19/22 
+%>
+
 <h1>
   <%= current_user.pantry_name %>
   <small class="text-muted"> - Edit a Request</small>
@@ -7,4 +15,6 @@
 
 <h2>Modify an Existing Request</h2>Make any modifications necessary for this request below. Any information that is not changed will remain the same, so you only need to modify what doesn't look quite right.</p>
 
+<%# Simply renders the form used for request information. %>
+<%# new.html.erb does the same thing here. %>
 <%= render 'form', request: @request %>

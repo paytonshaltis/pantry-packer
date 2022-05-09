@@ -1,3 +1,12 @@
+<%# 
+  Project name: Pantry Packer
+  Description: A single database and network for food pantries to request food items.
+  Filename: _form.html.erb
+  Description: Partial view for forms related to creating / editing requests.
+  Last modified on: 4/19/22 
+%>
+
+<%# Form for creating and editing pantry requests. %>
 <div class="form-wrapper-65">
   <%= form_with(model: request, local: true) do |form| %>
     <% if request.errors.any? %>
@@ -12,14 +21,18 @@
       </div>
     <% end %>
 
+    <%# Request name field and description. %>
     <div class="field">
-      <%= form.label "Request Name: ", class: "form-label" %><br>
+      <%= form.label "Request Name: *", class: "form-label" %><br>
       <%= form.text_field :name, class:"fill-field form-control", required: true %>
       <small class="form-text text-muted">This is the first thing that viewers will see when they find your request.</small>
     </div>
+
     <hr>
+    
+    <%# Requested item type field (radio buttons; select one of many). %>
     <div class="field">
-      <%= form.label "Request Item Type:", class: "form-label" %><br />
+      <%= form.label "Request Item Type: *", class: "form-label" %><br />
       <%= form.label :item_type, "Canned Good", :value => "Canned Good" %>
       <%= form.radio_button :item_type, "Canned Good", class: "radio-b", required: true %>
       <%= form.label :item_type, "Fruit", :value => "Fruit"%>
@@ -38,15 +51,21 @@
       <%= form.radio_button :item_type, "Other", class: "radio-b", required: true %>
       <small class="form-text text-muted">This will help viewers when searching for requests, so make sure it is representative of the request.</small>
     </div>
+
     <hr>
+    
+    <%# Comments field and description (optional in form). %>
     <div class="field">
       <%= form.label "Provide any additional information to viewers:", class: "form-label" %><br>
       <%= form.text_area :description, size: "1x5", class: "fill-field form-control" %>
       <small class="form-text text-muted">Context is good for providing viewers (and potential donors) with more information about your request. If you marked 'other' above, then you should definitely include the relevant type here.</small>
     </div>
+
     <hr>
+    
+    <%# Positive or negative request indicator (radio buttons; select one of two). %>
     <div class="field">
-      <%= form.label "Is your request encouraging or discouraging an item?", class: "form-label" %><br>
+      <%= form.label "Is your request encouraging or discouraging an item? *", class: "form-label" %><br>
       <%= form.label :ispositive, "Encourage", :value => "true" %>
       <%= form.radio_button :ispositive, "true", class: "radio-b", required: true %>
       <%= form.label :ispositive, "Discourage", :value => "false" %>
@@ -55,13 +74,15 @@
     </div>
 
     <%# Does the user --> request association under the hood. %>
+    <%# This hidden form input adds the current user's ID to the request. %>
     <%= form.number_field :user_id, value: current_user.id, type: "hidden" %>
 
     <br>
 
+    <%# User options to either confirm the request creation / edit or cancel. %>
     <div class="actions">
       <div class="center">
-        <%= link_to 'Cancel Entry', requests_path, class:"btn btn-secondary btn-large" %>
+        <%= link_to 'Cancel', requests_path, class:"btn btn-secondary btn-large" %>
         <%= form.submit "Confirm Request", class:"btn btn-primary btn-large" %>
       </div>
     </div>
