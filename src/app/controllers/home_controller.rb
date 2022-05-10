@@ -2,7 +2,7 @@
 # Description: A single database and network for food pantries to request food items.
 # Filename: home_controller.rb
 # Description: Logic for the home and search pages.
-# Last modified on: 4/19/22
+# Last modified on: 5/10/22
 
 # frozen_string_literal: true
 
@@ -121,7 +121,22 @@ class HomeController < ApplicationController
 
   # Viewing single pantry page
   def pantry
-    
+
+    # Get the pantry representative user associated with this ID.
+    user_id = params[:pantry_id]
+    pantry_rep = User.where("id=#{user_id}")[0];
+    puts(pantry_rep.inspect())
+
+    # Retrieve the information associated with the pantry using the passed ID.
+    @pantry_name =      pantry_rep.pantry_name
+    @pantry_location =  pantry_rep.pantry_location
+    @pantry_link =      pantry_rep.pantry_link
+    @pantry_desc =      pantry_rep.pantry_desc
+    @requests =         []
+    Request.where("user_id=#{user_id}").each { |request|
+      @requests.push(request)
+    }
+
   end
   
 end
