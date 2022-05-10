@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   # The page for viewing all requests from all pantries.
   get 'home/search'
 
+  # The page for viewing a single pantry's information and requests.
+  get 'home/pantry'
+
   # Devise login and account views.
   devise_for :users, :controllers => {registrations: 'users/registrations'}
 

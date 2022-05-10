@@ -32,7 +32,7 @@
     <%# Pantry name that the request belongs to. %>
     <strong>Pantry Name: </strong>
     <strong style="font-weight: bold;">
-      <%= @user.pantry_name %> 
+      <%= link_to @user.pantry_name, home_pantry_path() %> 
     </strong><br><em style="font-size: .9em;">First requested on <%= @request.created_at.in_time_zone("America/New_York").strftime("%B %d, %Y at %I:%M %p") %> EST.</em></p>
   <p>
 

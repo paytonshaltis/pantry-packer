@@ -151,7 +151,7 @@
         <% end %>
 
           <%# Pantry name, request name, item type data. %>
-          <td><strong><%= User.where('id = ' + request.user_id.to_s)[0].pantry_name %></strong></td>
+          <td><strong><%= link_to User.where('id = ' + request.user_id.to_s)[0].pantry_name, home_pantry_path() %></strong></td>
           <td class="name"><%= request.name %></td>
           <td><%= request.item_type %></td>
 

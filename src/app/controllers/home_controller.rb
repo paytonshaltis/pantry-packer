@@ -118,5 +118,10 @@ class HomeController < ApplicationController
     @requests_to_display = all_search_results;
 
   end
+
+  # Viewing single pantry page
+  def pantry
+    
+  end
   
 end
