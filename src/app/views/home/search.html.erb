@@ -150,8 +150,10 @@
           <tr class="table-danger data">
         <% end %>
 
-          <%# Pantry name, request name, item type data. %>
-          <td><strong><%= link_to User.where('id = ' + request.user_id.to_s)[0].pantry_name, home_pantry_path() %></strong></td>
+          <%# The pantry name should link to the dedicated pantry page. %>
+          <td><strong><%= link_to User.where('id = ' + request.user_id.to_s)[0].pantry_name, home_pantry_path(:pantry_id => request.user_id) %></strong></td>
+          
+          <%# Request name, item type data. %>
           <td class="name"><%= request.name %></td>
           <td><%= request.item_type %></td>
 
