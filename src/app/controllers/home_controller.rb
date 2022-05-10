@@ -119,6 +119,26 @@ class HomeController < ApplicationController
 
   end
 
+  # Returns a string of all select options for spotlight dropdown.
+  def self.get_select_options(user_id)
+
+    # Construct a string of options of links.
+    result = "<option value='#'>Select a Pantry</option>";
+    User.all().each() { |u| 
+
+      # If the pantry belongs to the user, redirect them to manage pantry.
+      if u.id.to_i() == user_id.to_i()
+        result = result + "<option value='\/requests'>" + u.pantry_name + "</option>"
+      else
+        result = result + "<option value='\/home\/pantry?pantry_id=" + u.id.to_s() + "'>" + u.pantry_name + "</option>"
+      end
+    }
+    
+    # Return that string for entry into a select element.
+    return result
+
+  end
+
   # Viewing single pantry page
   def pantry
 
