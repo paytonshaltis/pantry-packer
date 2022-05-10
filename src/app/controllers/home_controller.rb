@@ -123,8 +123,8 @@ class HomeController < ApplicationController
   def pantry
 
     # Get the pantry representative user associated with this ID.
-    user_id = params[:pantry_id]
-    pantry_rep = User.where("id=#{user_id}")[0];
+    @user_id = params[:pantry_id]
+    pantry_rep = User.where("id=#{@user_id}")[0];
     puts(pantry_rep.inspect())
 
     # Retrieve the information associated with the pantry using the passed ID.
@@ -133,7 +133,7 @@ class HomeController < ApplicationController
     @pantry_link =      pantry_rep.pantry_link
     @pantry_desc =      pantry_rep.pantry_desc
     @requests =         []
-    Request.where("user_id=#{user_id}").each { |request|
+    Request.where("user_id=#{@user_id}").each { |request|
       @requests.push(request)
     }
 
