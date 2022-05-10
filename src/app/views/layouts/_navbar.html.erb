@@ -23,7 +23,7 @@
     
     <%# Link to view all requests. %>
     <li class="nav-item">
-      <% if request.path == '/home/search' || request.path.match(/\/requests\/[0-9]+/) %>
+      <% if request.path == '/home/search' || request.path.match(/\/requests\/[0-9]+/) || request.path.match(/\/home\/pantry/) %>
         <%= link_to 'View Requests', home_search_path, class:"nav-link active" %>
       <% else %>
         <%= link_to 'View Requests', home_search_path, class:"nav-link" %>
