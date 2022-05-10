@@ -33,8 +33,12 @@
     <strong>Pantry Name: </strong>
     <strong style="font-weight: bold;">
 
-      <%# The pantry name should link to the dedicated pantry page. %>
-      <%= link_to @user.pantry_name, home_pantry_path(:pantry_id => @user.id) %>
+          <%# The pantry name should link to the dedicated pantry page or manage pantry. %>
+          <% if user_signed_in? && current_user.id == @user.id %>
+            <td><%= link_to @user.pantry_name, requests_path %></td>
+          <% else %>
+            <td><%= link_to @user.pantry_name, home_pantry_path(:pantry_id => @user.id) %></td>
+          <% end %>
 
     </strong><br><em style="font-size: .9em;">First requested on <%= @request.created_at.in_time_zone("America/New_York").strftime("%B %d, %Y at %I:%M %p") %> EST.</em></p>
   <p>
