@@ -18,3 +18,6 @@ The UI mockups are meant to help drive development of an intuitive and user-frie
 
 ## Searching for a Request
 ![UI Mockup for Searching for a Request](../uml/UI-Mockups/UI-Search-Filter-Request.png)
+
+## Viewing a Pantry Spotlight
+![UI Mockup for Viewing a Pantry Spotlight](../uml/UI-Mockups/UI-Pantry-Spotlight.png)
