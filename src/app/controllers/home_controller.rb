@@ -2,7 +2,7 @@
 # Description: A single database and network for food pantries to request food items.
 # Filename: home_controller.rb
 # Description: Logic for the home and search pages.
-# Last modified on: 4/19/22
+# Last modified on: 5/10/22
 
 # frozen_string_literal: true
 
@@ -116,6 +116,46 @@ class HomeController < ApplicationController
 
     # The list of requests is now ready to be displayed.
     @requests_to_display = all_search_results;
+
+  end
+
+  # Returns a string of all select options for spotlight dropdown.
+  def self.get_select_options(user_id)
+
+    # Construct a string of options of links.
+    result = "<option value='#'>Select a Pantry</option>";
+    User.all().each() { |u| 
+
+      # If the pantry belongs to the user, redirect them to manage pantry.
+      if u.id.to_i() == user_id.to_i()
+        result = result + "<option value='\/requests'>" + u.pantry_name + "</option>"
+      else
+        result = result + "<option value='\/home\/pantry?pantry_id=" + u.id.to_s() + "'>" + u.pantry_name + "</option>"
+      end
+    }
+    
+    # Return that string for entry into a select element.
+    return result
+
+  end
+
+  # Viewing single pantry page
+  def pantry
+
+    # Get the pantry representative user associated with this ID.
+    @user_id = params[:pantry_id]
+    pantry_rep = User.where("id=#{@user_id}")[0];
+    puts(pantry_rep.inspect())
+
+    # Retrieve the information associated with the pantry using the passed ID.
+    @pantry_name =      pantry_rep.pantry_name
+    @pantry_location =  pantry_rep.pantry_location
+    @pantry_link =      pantry_rep.pantry_link
+    @pantry_desc =      pantry_rep.pantry_desc
+    @requests =         []
+    Request.where("user_id=#{@user_id}").each { |request|
+      @requests.push(request)
+    }
 
   end
   

@@ -3,7 +3,7 @@
   Description: A single database and network for food pantries to request food items.
   Filename: search.html.erb
   Description: View for searching and filtering all requests.
-  Last modified on: 4/19/22 
+  Last modified on: 5/10/22
 %>
 
 <h1>
@@ -12,7 +12,7 @@
 </h1>
 <hr>
 <h2>Find a Pantry to Assist.</h2>
-  <p>Use the options below to narrow your search and more effectively choose the best option for your donation. Search for pantries by entering their name, a request name, or part of a description to find matching results. Additionally, mark off the food and request type that you would like to filter your results by before clicking 'search.'</p>
+  <p>Use the options below to narrow your search and more effectively choose the best option for your donation. Search for pantries by entering their name, a request name, or part of a description to find matching results. Additionally, mark off the food and request type that you would like to filter your results by before clicking 'search.' Click the name of a pantry to visit its Pantry Spotlight page, where you can see all of that pantry's information and requests in one place. Alternatively, visit the spotlight page of any pantry by using the dropdown menu below.</p>
 <hr>
 
     <%# Form for searching and filtering. %>
@@ -21,7 +21,7 @@
         <%# The search bar for pantry name, item name, and description. %>
         <div class="search-panel">
           <div class="input-group mb-3">
-            <%= text_field_tag("search_text", params[:search_text], class:"form-control search-bar", placeholder:"Pantry name, item, or description.") %>
+            <%= text_field_tag("search_text", params[:search_text], class:"form-control search-bar", placeholder:"Pantry name, item, or description.", style:"font-size: 20px;") %>
             <div class="input-group-append">
               <%= submit_tag('Search', class: "btn btn-primary")%>
             </div>
@@ -101,6 +101,8 @@
 
         <br>
 
+        <div class="flexy-center">
+
         <%# Checkboxes for each of the request types (positive and negative). %>
         <fieldset>
         <legend><em>Filter by Request Type:</em></legend>
@@ -123,6 +125,22 @@
             </div>
           </div>
         </fieldset>
+
+      <%# Dropdown with links to each of the pantry spotlights. %>
+      <fieldset>
+        <legend style="text-align: right;"><em>Visit a Pantry Spotlight</em></legend>
+        <% if user_signed_in? %>
+          
+          <%# Pass user ID if signed in to get manage pantry link. %>
+          <%= select_tag("pantries", raw(HomeController.get_select_options(current_user.id)), onchange:"location = this.value;", style:"float: right;" )%>
+        <% else %>
+
+          <%# Otherwise, pass -1 for user signed out. %>
+          <%= select_tag("pantries", raw(HomeController.get_select_options(-1)), onchange:"location = this.value;", style:"float: right;" )%>
+        <% end %>
+      </fieldset>
+
+    </div>
 
     <% end %>
 
@@ -150,8 +168,14 @@
           <tr class="table-danger data">
         <% end %>
 
-          <%# Pantry name, request name, item type data. %>
-          <td><strong><%= User.where('id = ' + request.user_id.to_s)[0].pantry_name %></strong></td>
+          <%# The pantry name should link to the dedicated pantry page or manage pantry. %>
+          <% if user_signed_in? && current_user.id == request.user_id %>
+            <td><strong><%= link_to User.where('id = ' + request.user_id.to_s)[0].pantry_name, requests_path, class:"table-link" %></strong></td>
+          <% else %>
+            <td><strong><%= link_to User.where('id = ' + request.user_id.to_s)[0].pantry_name, home_pantry_path(:pantry_id => request.user_id), class:"table-link" %></strong></td>
+          <% end %>
+
+          <%# Request name, item type data. %>
           <td class="name"><%= request.name %></td>
           <td><%= request.item_type %></td>
 

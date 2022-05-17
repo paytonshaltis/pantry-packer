@@ -3,7 +3,7 @@
   Description: A single database and network for food pantries to request food items.
   Filename: _navbar.html.erb
   Description: Partial view for displaying the navigation bar.
-  Last modified on: 4/19/22 
+  Last modified on: 5/10/22
 %>
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -23,7 +23,7 @@
     
     <%# Link to view all requests. %>
     <li class="nav-item">
-      <% if request.path == '/home/search' || request.path.match(/\/requests\/[0-9]+/) %>
+      <% if request.path == '/home/search' || request.path.match(/\/requests\/[0-9]+/) || request.path.match(/\/home\/pantry/) %>
         <%= link_to 'View Requests', home_search_path, class:"nav-link active" %>
       <% else %>
         <%= link_to 'View Requests', home_search_path, class:"nav-link" %>

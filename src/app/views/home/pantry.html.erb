@@ -1,0 +1,103 @@
+<%# 
+  Project name: Pantry Packer
+  Description: A single database and network for food pantries to request food items.
+  Filename: pantry.html.erb
+  Description: View for a single pantry's information and list of requests.
+  Last modified on: 5/10/22
+%>
+
+<h1>
+  <%= @pantry_name %>
+  <small class="text-muted"> - Pantry Spotlight</small>
+</h1>
+
+<hr>
+
+<%# Provide the pantry description if it exists. %>
+<h2>Pantry Description</h2>
+<% if !@pantry_desc.blank?() %>
+  <p><%= @pantry_desc %></p>
+<% else %>
+  <p>The representative of this pantry has not provided a description. See if they provided a website link to learn more about their organization.</p>
+<% end %>
+
+<hr>
+
+<%# Provide the pantry location link if it exists. %>
+<h2>Pantry Location</h2>
+<% if !@pantry_location.blank?() %>
+  <div class="flexy-center">
+    <div>
+      <p class="no-margin"><em><%= @pantry_location %></em></p>
+      <small class="text-muted description">The pantry representative provided this as their location, in case the button does not work.</small></em>
+    </div>    
+    <%= link_to "Google Maps", "https://www.google.com/maps/search/" + @pantry_location.gsub(" ", "+"), target:"_blank", class:"btn btn-primary" %>
+  </div>
+  <br>
+<% else %>
+  <p>The representative of this pantry has not provided a location. Look in the pantry's description to see if this information is provided.</p>
+<% end %>
+
+<%# Provide a link to the the pantry website if it exists. %>
+<h2>Pantry Website</h2>
+<% if !@pantry_link.blank?() %>
+  <div class="flexy-center">
+    <div>
+      <p class="no-margin"><em><%= @pantry_link %></em></p>
+      <small class="text-muted description">The pantry representative provided this as their website, in case the button does not work.</small></em>
+    </div>
+    <%= link_to "Visit our Website", "https://" + @pantry_link, target:"_blank", class:"btn btn-primary" %>
+  </div>
+<% else %>
+  <p>The representative of this pantry has not provided a website. Look in the pantry's description to see if this information is provided.</p>
+<% end %>
+
+<hr>
+
+<%# Show a message if the pantry does not currently have any requests. %>
+<% if RequestsController.get_total_requests(@user_id.to_i()) == 0%>
+  <div class="center">
+    <h3>This pantry doesn't have any requests yet.</h3>
+  </div>
+
+<%# Otherwise, create a table of all of their associated requests. %>
+<% else %>
+  <table class="table table-hover table-borderless">
+    
+    <%# The most important request details: name, type, and description. %>
+    <thead>
+      <tr class="header">
+        <th>Request Name</th>
+        <th>Item Type</th>
+        <th>Request Description</th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <%# Need to go through each of the pantry's requests. %>
+      <% @requests.each do |request| %>
+          
+        <%# Row color changes based on request type. %>
+        <% if request.ispositive %>
+          <tr class="table-success data">
+        <% else %>
+          <tr class="table-danger data">
+        <% end %>
+
+          <%# Show the full name of the request. %>
+          <td class="name"><strong><%= request.name %></strong></td>
+          <td><%= request.item_type %></td>
+          
+          <%# Only show a preview of the request description. %>
+          <td><em><%= RequestsController.abbreviate_desc(request.description) %></em></td>
+
+          <%# Give the user the option to show a request in greater detail. %>
+          <td><div class="center"><%= link_to 'Show', request, class:"btn btn-sm btn-secondary"%></div></td>
+        
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

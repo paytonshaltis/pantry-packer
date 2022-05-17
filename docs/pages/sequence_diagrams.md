@@ -15,3 +15,6 @@ The system sequence diagrams show the overall 'flow' of interaction between clas
 
 ## Searching for a Request with Filters
 ![SSD for Searching for a Request with Filters](../uml/System-Sequence-Diagrams/SSD-Search-Filter-Request.png)
+
+## Viewing a Pantry Spotlight
+![Viewing a Pantry Spotlight](../uml/System-Sequence-Diagrams/SSD-View-Pantry-Spotlight.png)

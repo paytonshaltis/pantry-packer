@@ -2,7 +2,7 @@
 # Description: A single database and network for food pantries to request food items.
 # Filename: routes.rb
 # Description: Contains the valid routes for navigating the application.
-# Last modified on: 4/19/22 
+# Last modified on: 5/10/22
 
 # frozen_string_literal: true
 
@@ -21,6 +21,9 @@ Rails.application.routes.draw do
 
   # The page for viewing all requests from all pantries.
   get 'home/search'
+
+  # The page for viewing a single pantry's information and requests.
+  get 'home/pantry'
 
   # Devise login and account views.
   devise_for :users, :controllers => {registrations: 'users/registrations'}
